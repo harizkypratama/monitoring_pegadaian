@@ -1,28 +1,160 @@
-# Monitoring Pegadaian — V4 Revisi
+# Monitoring Pegadaian
 
-Static web app untuk monitoring kontrak gadai, taksir ulang, perhitungan lelang, monitoring cabang/outlet, dashboard KPI, dan ekspor data.
+Aplikasi web untuk monitoring data kontrak, barang, import Excel, dashboard KPI, dan pengelolaan akses pengguna.
 
-## Perubahan terbaru
-- Login dihapus; aplikasi menampilkan splash/opening Monitoring Pegadaian terlebih dahulu.
-- Logo pada `assets/logo-placeholder.svg` dapat diganti dengan logo Pegadaian yang sebenarnya.
-- Taksir ulang selalu sinkron dengan Detail Barang (Karatase, BK, BB); hanya Nilai Berlian yang diinput.
-- Taksir Ulang BK ditambahkan ke preview, data kontrak, dan ekspor.
-- Selisih NPBL vs UP dihitung dari total NPBL seluruh barang dikurangi total UP dan ditampilkan satu kali sebagai ringkasan.
-- Perhitungan lelang ditampilkan sebagai alur visual, bukan deretan kartu.
-- Rincian BJDPL outlet menggunakan nominal kewajiban, bukan jumlah baris.
-- Dashboard dan grafik monitoring dipoles menjadi lebih minimal dan ringkas.
-- **[Baru] Perhitungan Minimal Kewajiban Pembeli Lelang**: kartu "02 · Harga Minimal Lelang" kini menampilkan rincian singkat (Total Kewajiban × Faktor Pengali 101/99) sehingga tidak lagi terlihat kosong dibanding kartu lain di barisnya; nilai akhir didorong ke bawah kartu agar seimbang secara visual. Ditambahkan pula konektor panah kecil antar kartu (pada layar lebar) supaya alur 01→02→03 dan 04→05→06 terbaca sebagai satu rangkaian.
-- **[Baru] Dashboard KPI**: ditambahkan bagian "Indikator Lelang & Aging" berisi 4 kartu ringkasan (Kontrak Berpotensi Diskon Lelang, Estimasi Total Diskon Lelang, Rata-rata BJDPL, Kontrak > 90 Hari) serta 2 grafik baru (Status Diskon Lelang, Top 10 Nasabah berdasarkan Kewajiban), memanfaatkan data yang sudah dihitung otomatis (Diskon_Tidak_Diskon, Diskon_Lelang_Rp, BJDPL_Hari) tanpa mengubah kartu/grafik yang sudah ada.
+## Fitur
 
-## Deploy
-Upload isi folder ini ke GitHub dan deploy sebagai static site di Vercel.
+- Login dengan role **ADMIN** dan **USER**
+- Dashboard monitoring dan KPI
+- Import Excel oleh ADMIN
+- Multi-import
+- Pencocokan kontrak berdasarkan data yang paling lengkap
+- Preview data dari database
+- Update kontrak
+- Export dan export log
+- Hak akses ADMIN/USER
+- MySQL sebagai sumber data utama
 
+## Logika Data Kontrak
 
-## Penyimpanan data
-Versi ini menggunakan IndexedDB untuk menyimpan data monitoring di browser sehingga data tetap tersedia setelah refresh. Form taksir ulang juga memiliki autosave draft melalui localStorage dan akan dipulihkan saat halaman dibuka kembali pada browser yang sama.
+**No Kontrak** digunakan sebagai identitas kontrak.
 
+Satu kontrak dapat memiliki banyak barang:
 
-## Hak akses import
-- ADMIN dapat memilih beberapa file Excel sekaligus; seluruh sheet valid dari semua file digabung menjadi satu dataset.
-- USER hanya dapat melihat Preview/Pemeriksaan dan tidak dapat menjalankan import atau penghapusan data import.
-- Filter Cabang dan Outlet pada Preview mempersempit KPI, pemeriksaan, dan baris tabel secara bersamaan.
+```text
+A001
+├── Barang 1
+├── Barang 2
+└── Barang 3
+```
+
+Jika kontrak yang sama ditemukan pada beberapa file, sistem tidak bergantung pada urutan upload. Versi dengan **data/item yang paling lengkap** dipertahankan.
+
+Contoh:
+
+```text
+Import 1
+A001 | Barang 1
+
+Import 2
+A001 | Barang 1
+A001 | Barang 2
+A001 | Barang 3
+```
+
+Hasil:
+
+```text
+A001 | Barang 1
+A001 | Barang 2
+A001 | Barang 3
+```
+
+## Struktur Database
+
+```text
+areas
+branches
+outlets
+app_users
+customers
+import_batches
+contracts
+contract_items
+contract_auction_calculations
+hdle_history
+audit_logs
+export_logs
+```
+
+`contracts` menyimpan satu record per No Kontrak. `contract_items` menyimpan seluruh barang dalam kontrak.
+
+`import_batches` menyimpan metadata import untuk kebutuhan audit. Data mentah Excel bukan sumber data utama aplikasi.
+
+## Hak Akses
+
+| Fitur | ADMIN | USER |
+|---|:---:|:---:|
+| Login | ✅ | ✅ |
+| Melihat data | ✅ | ✅ |
+| Dashboard | ✅ | ✅ |
+| Preview data | ✅ | ✅ |
+| Import Excel | ✅ | ❌ |
+| Multi-import | ✅ | ❌ |
+| Pengelolaan user | ✅ | ❌ |
+
+## Instalasi Lokal
+
+Persyaratan:
+
+- PHP
+- MySQL/MariaDB
+- Apache atau web server PHP
+- Browser modern
+
+Untuk XAMPP, letakkan project di:
+
+```text
+C:\xampp\htdocs\monitoring_pegadaian\
+```
+
+Import schema database yang disediakan, lalu atur konfigurasi:
+
+```text
+DB_HOST
+DB_PORT
+DB_NAME
+DB_USER
+DB_PASS
+```
+
+Jalankan:
+
+```text
+http://localhost/monitoring_pegadaian/
+```
+
+## Deployment
+
+Project membutuhkan hosting/server yang mendukung **PHP + MySQL/MariaDB**.
+
+Langkah umum:
+
+1. Buat database di server.
+2. Import schema SQL.
+3. Upload source code ke web root.
+4. Isi credential database melalui environment/configuration server.
+5. Pastikan web server mengarah ke folder aplikasi.
+6. Uji koneksi database.
+
+## Keamanan
+
+**Jangan commit credential production ke repository publik.**
+
+Jangan masukkan ke GitHub:
+
+- password database
+- API key
+- credential production
+- `.env` berisi secret
+- data pelanggan atau data operasional sensitif
+
+Gunakan environment variables atau konfigurasi server.
+
+## Arsitektur
+
+```text
+Excel
+  ↓
+Import API
+  ↓
+contracts + contract_items
+  ↓
+MySQL
+  ↓
+PHP API
+  ↓
+Frontend
+```
+
+**Stack:** PHP + MySQL/MariaDB + JavaScript + HTML/CSS
