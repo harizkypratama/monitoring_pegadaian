@@ -1,17 +1,13 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
-# Enable Apache rewrite
-RUN a2enmod rewrite
-
-# Install PHP extensions for MySQL
+# Install PHP extensions untuk MySQL
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Copy application files to Apache web root
+# Copy application files
 COPY . /var/www/html/
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
 
-EXPOSE 80
-
-CMD ["apache2-foreground"]
+# Railway menyediakan PORT saat runtime
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t /var/www/html"]
