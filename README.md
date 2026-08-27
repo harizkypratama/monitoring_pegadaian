@@ -1,160 +1,72 @@
 # Monitoring Pegadaian
 
-Aplikasi web untuk monitoring data kontrak, barang, import Excel, dashboard KPI, dan pengelolaan akses pengguna.
+Aplikasi monitoring data Pegadaian berbasis web yang digunakan untuk mengelola, memantau, dan menganalisis data kontrak secara terintegrasi.
 
-## Fitur
+## Tentang Aplikasi
 
-- Login dengan role **ADMIN** dan **USER**
-- Dashboard monitoring dan KPI
-- Import Excel oleh ADMIN
-- Multi-import
-- Pencocokan kontrak berdasarkan data yang paling lengkap
-- Preview data dari database
-- Update kontrak
-- Export dan export log
-- Hak akses ADMIN/USER
-- MySQL sebagai sumber data utama
+Monitoring Pegadaian dirancang untuk membantu proses pemantauan data kontrak, barang, nasabah, outlet, serta berbagai indikator monitoring dalam satu sistem.
 
-## Logika Data Kontrak
+Aplikasi menggunakan database sebagai sumber data utama sehingga data yang tersimpan dapat digunakan secara terpusat oleh pengguna dengan hak akses yang berbeda.
 
-**No Kontrak** digunakan sebagai identitas kontrak.
+## Fitur Utama
 
-Satu kontrak dapat memiliki banyak barang:
+- **Dashboard Monitoring**
+  - Menampilkan ringkasan dan indikator utama data kontrak.
+  - Menyediakan informasi KPI untuk membantu proses monitoring.
 
-```text
-A001
-├── Barang 1
-├── Barang 2
-└── Barang 3
-```
+- **Manajemen Data Kontrak**
+  - Pengelolaan data kontrak dan detail barang.
+  - Satu nomor kontrak dapat memiliki beberapa barang.
+  - Data kontrak dengan nomor yang sama dicocokkan berdasarkan kelengkapan informasi.
 
-Jika kontrak yang sama ditemukan pada beberapa file, sistem tidak bergantung pada urutan upload. Versi dengan **data/item yang paling lengkap** dipertahankan.
+- **Import Data**
+  - Mendukung import data dari file Excel.
+  - Mendukung penggabungan data dari beberapa sumber.
+  - Data dengan nomor kontrak yang sama diproses berdasarkan data yang paling lengkap.
 
-Contoh:
+- **Preview Data**
+  - Menampilkan data yang tersimpan dalam database.
+  - Dilengkapi fitur pencarian dan penyaringan data.
 
-```text
-Import 1
-A001 | Barang 1
+- **Monitoring Lelang**
+  - Menampilkan informasi terkait data lelang dan indikator yang berkaitan dengan proses monitoring.
 
-Import 2
-A001 | Barang 1
-A001 | Barang 2
-A001 | Barang 3
-```
+- **Manajemen Pengguna**
+  - Mendukung role **ADMIN** dan **USER** dengan hak akses yang berbeda.
 
-Hasil:
+- **Export Data**
+  - Menyediakan fungsi ekspor data untuk kebutuhan pengolahan dan pelaporan.
 
-```text
-A001 | Barang 1
-A001 | Barang 2
-A001 | Barang 3
-```
+- **Audit & Log**
+  - Mencatat aktivitas penting dalam sistem, termasuk aktivitas import dan export data.
 
-## Struktur Database
+## Struktur Data
 
-```text
-areas
-branches
-outlets
-app_users
-customers
-import_batches
-contracts
-contract_items
-contract_auction_calculations
-hdle_history
-audit_logs
-export_logs
-```
+Sistem menggunakan database terstruktur untuk memisahkan data berdasarkan entitasnya, antara lain:
 
-`contracts` menyimpan satu record per No Kontrak. `contract_items` menyimpan seluruh barang dalam kontrak.
+- Area
+- Cabang
+- Outlet
+- User
+- Nasabah
+- Kontrak
+- Detail Barang
+- Perhitungan Lelang
+- HDLE
+- Import Batch
+- Audit Log
+- Export Log
 
-`import_batches` menyimpan metadata import untuk kebutuhan audit. Data mentah Excel bukan sumber data utama aplikasi.
-
-## Hak Akses
-
-| Fitur | ADMIN | USER |
-|---|:---:|:---:|
-| Login | ✅ | ✅ |
-| Melihat data | ✅ | ✅ |
-| Dashboard | ✅ | ✅ |
-| Preview data | ✅ | ✅ |
-| Import Excel | ✅ | ❌ |
-| Multi-import | ✅ | ❌ |
-| Pengelolaan user | ✅ | ❌ |
-
-## Instalasi Lokal
-
-Persyaratan:
+## Teknologi
 
 - PHP
-- MySQL/MariaDB
-- Apache atau web server PHP
-- Browser modern
+- MySQL / MariaDB
+- JavaScript
+- HTML
+- CSS
 
-Untuk XAMPP, letakkan project di:
+## Konsep Utama
 
-```text
-C:\xampp\htdocs\monitoring_pegadaian\
-```
+Sistem menggunakan **No Kontrak sebagai identitas utama kontrak**. Detail barang disimpan secara terpisah sehingga satu kontrak dapat memiliki lebih dari satu barang tanpa kehilangan informasi.
 
-Import schema database yang disediakan, lalu atur konfigurasi:
-
-```text
-DB_HOST
-DB_PORT
-DB_NAME
-DB_USER
-DB_PASS
-```
-
-Jalankan:
-
-```text
-http://localhost/monitoring_pegadaian/
-```
-
-## Deployment
-
-Project membutuhkan hosting/server yang mendukung **PHP + MySQL/MariaDB**.
-
-Langkah umum:
-
-1. Buat database di server.
-2. Import schema SQL.
-3. Upload source code ke web root.
-4. Isi credential database melalui environment/configuration server.
-5. Pastikan web server mengarah ke folder aplikasi.
-6. Uji koneksi database.
-
-## Keamanan
-
-**Jangan commit credential production ke repository publik.**
-
-Jangan masukkan ke GitHub:
-
-- password database
-- API key
-- credential production
-- `.env` berisi secret
-- data pelanggan atau data operasional sensitif
-
-Gunakan environment variables atau konfigurasi server.
-
-## Arsitektur
-
-```text
-Excel
-  ↓
-Import API
-  ↓
-contracts + contract_items
-  ↓
-MySQL
-  ↓
-PHP API
-  ↓
-Frontend
-```
-
-**Stack:** PHP + MySQL/MariaDB + JavaScript + HTML/CSS
+Pada proses penggabungan data, apabila nomor kontrak yang sama terdapat pada beberapa sumber, sistem mempertahankan data dengan informasi yang paling lengkap sehingga data kontrak tidak berkurang hanya karena adanya perbedaan jumlah barang atau kelengkapan antar sumber.
