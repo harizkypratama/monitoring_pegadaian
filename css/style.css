@@ -1,0 +1,1480 @@
+/* style.css */
+:root{--green:#008037;--dark:#00662C;--yellow:#FFCC00;--bg:#F4F6F9;--text:#17231d;--muted:#66736c;--line:#dfe7e2;--red:#d63031}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}.hidden{display:none!important}
+.splash-screen{position:fixed;inset:0;z-index:5000;background:radial-gradient(circle at 50% 35%,#0b8b47 0,#00662c 45%,#003f20 100%);display:flex;align-items:center;justify-content:center;color:#fff;opacity:1;transition:opacity .5s ease}.splash-screen.splash-hide{opacity:0;pointer-events:none}.splash-inner{text-align:center;animation:splashUp .8s ease both}.splash-logo{width:104px;height:104px;object-fit:contain;background:#fff;border-radius:24px;padding:14px;box-shadow:0 18px 45px rgba(0,0,0,.22);margin-bottom:24px}.splash-kicker{font-size:11px;letter-spacing:3px;font-weight:800;opacity:.72}.splash-inner h1{margin:8px 0 7px;font-size:34px;letter-spacing:1px}.splash-inner p{margin:0;color:rgba(255,255,255,.78);font-size:14px}.splash-line{width:56px;height:3px;background:#ff6a00;border-radius:99px;margin:24px auto 0}@keyframes splashUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.btn{border:0;border-radius:9px;padding:11px 16px;font-weight:800;cursor:pointer;transition:.18s}.btn:hover{transform:translateY(-1px)}.btn-primary{background:var(--green);color:white}.btn-info{background:#1989d4;color:white}.btn-light{background:#edf2ef;color:#31423a}.btn.full{width:100%}.btn-lg{padding:14px 22px;font-size:15px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.48);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}.modal-card{background:white;width:min(500px,95vw);border-radius:18px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.3)}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.modal-head h2{margin:0}.icon-btn{border:0;background:#eef2ef;border-radius:8px;font-size:26px;width:38px;height:38px;cursor:pointer}.modal-card label{display:block;font-size:13px;font-weight:700;margin:10px 0 6px}.modal-card input{width:100%;height:44px;border:1px solid #ccd6d0;border-radius:8px;padding:0 12px}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+.app{min-height:100vh;display:flex}.sidebar{position:fixed;left:0;top:0;bottom:0;width:212px;background:linear-gradient(180deg,#00662c,#004f25);color:#fff;padding:18px 12px;display:flex;flex-direction:column;z-index:20;overflow-y:auto}.sidebar::-webkit-scrollbar{width:0px}.side-brand{display:flex;gap:10px;align-items:center;padding:6px 6px 20px}.mini-logo{width:36px;height:36px;border-radius:10px;object-fit:contain;background:#fff;padding:4px;display:block}.side-brand b{display:block;font-size:12px}.side-brand small{opacity:.75;font-size:9px}nav{display:flex;flex-direction:column;gap:6px}.nav-item{border:0;background:transparent;color:#dcefe4;text-align:left;padding:11px 10px;border-radius:9px;cursor:pointer;font-weight:700;font-size:13px;display:flex;gap:9px;align-items:center;width:100%}.nav-item:hover,.nav-item.active{background:rgba(255,255,255,.13);color:#fff}
+.nav-group{display:flex;flex-direction:column}
+.nav-group-toggle{border:0;background:transparent;color:#dcefe4;text-align:left;padding:11px 10px;border-radius:9px;cursor:pointer;font-weight:800;font-size:12.5px;letter-spacing:.2px;display:flex;gap:9px;align-items:center;width:100%;justify-content:space-between;text-transform:uppercase}
+.nav-group-toggle>span{flex:1;display:flex;align-items:center;gap:9px}
+.nav-group-toggle .chevron{font-size:11px;opacity:.75;transition:transform .2s ease;flex:0 0 auto}
+.nav-group-toggle.active,.nav-group-toggle:hover{background:rgba(255,255,255,.08);color:#fff}
+.nav-group-toggle.active .chevron{transform:rotate(180deg)}
+.nav-submenu{max-height:0;overflow:hidden;transition:max-height .25s ease;display:flex;flex-direction:column;gap:4px;padding-left:6px;margin-top:0}
+.nav-submenu.open{max-height:600px;margin-top:4px;margin-bottom:2px}
+.nav-submenu .nav-item{padding:10px 10px 10px 22px;font-size:12.5px;position:relative}
+.nav-submenu .nav-item:before{content:"";position:absolute;left:10px;top:50%;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.55;transform:translateY(-50%)}
+.side-footer{margin-top:auto;padding-top:18px}.side-footer-card{position:relative;overflow:hidden;padding:14px 14px 13px;border:1px solid rgba(255,255,255,.16);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.055));box-shadow:0 10px 25px rgba(0,0,0,.12)}.side-footer-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--yellow)}.side-footer-main{display:flex;align-items:center;gap:10px}.side-footer-mark{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#fff;color:var(--green);font-size:14px;font-weight:900;box-shadow:0 4px 12px rgba(0,0,0,.12)}.side-footer-copy b{display:block;font-size:11px;letter-spacing:.7px;line-height:1.3}.side-footer-copy small{display:block;margin-top:3px;font-size:10px;color:rgba(255,255,255,.72);font-weight:600}.side-footer-line{height:1px;background:rgba(255,255,255,.13);margin:11px 0 9px}.side-footer-status{display:flex;align-items:center;gap:7px;font-size:9px;color:rgba(255,255,255,.68);font-weight:700;text-transform:uppercase;letter-spacing:.7px}.side-footer-status i{width:7px;height:7px;border-radius:50%;background:#7ee2a3;box-shadow:0 0 0 3px rgba(126,226,163,.13)}.logout-btn{width:100%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:white;padding:11px;border-radius:9px;cursor:pointer;font-weight:800;margin-top:12px}
+.main{margin-left:212px;width:calc(100% - 212px);padding:0 28px 50px}.topbar{position:sticky;top:0;z-index:10;background:rgba(244,246,249,.94);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:space-between;padding:20px 0 16px;border-bottom:1px solid rgba(0,0,0,.04)}.page-kicker,.eyebrow{font-size:11px;font-weight:800;letter-spacing:1.3px;color:var(--green)}.topbar h2{margin:3px 0 0;font-size:24px}.user-pill{background:#fff;border:1px solid var(--line);padding:9px 13px;border-radius:999px;font-weight:700}.page{display:none;padding-top:24px}.page.active{display:block}.section-title h1{margin:4px 0 5px;font-size:30px}.section-title p{color:var(--muted);margin-top:0}
+.hero-card{background:linear-gradient(120deg,#fff,#eff9f3);border:1px solid #dce9e1;border-radius:18px;padding:28px;display:flex;justify-content:space-between;gap:20px;align-items:center}.hero-card h1{margin:5px 0;font-size:28px}.hero-card p{color:var(--muted);margin:0}.upload-zone{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.upload-zone input{display:none}.upload-zone span{font-size:12px;color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:18px 0}.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.kpi-card,.summary-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 4px 18px rgba(25,60,40,.04)}.kpi-card span,.summary-box span{display:block;color:var(--muted);font-size:12px;font-weight:700}.kpi-card strong,.summary-box strong{display:block;font-size:24px;margin-top:8px;color:var(--green);white-space:nowrap;overflow:hidden;line-height:1.25}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;margin-top:18px;padding:20px;box-shadow:0 5px 20px rgba(20,50,35,.04)}.panel.accent-yellow{border-top:4px solid var(--yellow)}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:15px}.panel-head h3{margin:0;font-size:17px}.panel-head p{margin:5px 0 0;color:var(--muted);font-size:12px}.table-search{height:40px;min-width:260px;border:1px solid #ccd6d0;border-radius:8px;padding:0 12px;outline:none}.table-search:focus{border-color:var(--green)}
+.table-wrap{overflow:auto;max-height:600px;border:1px solid #e4ebe7;border-radius:10px}table{width:100%;border-collapse:separate;border-spacing:0;font-size:12px;min-width:950px}th{position:sticky;top:0;background:#eef6f1;color:#173c29;text-align:left;padding:11px 10px;border-bottom:1px solid #d4e3d9;white-space:nowrap;z-index:2}td{padding:10px;border-bottom:1px solid #edf1ef;white-space:nowrap}tbody tr:nth-child(even){background:#fbfdfc}.row-complete{background:#eaf8ee!important}.row-incomplete{background:#ffe8e8!important}.status-chip{display:inline-block;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:800}.status-ok{background:#dff5e6;color:#16713a}.status-bad{background:#ffdcdc;color:#a62020}
+.missing-summary{display:flex;flex-wrap:wrap;gap:10px}.missing-pill{padding:9px 12px;background:#f6f8f7;border:1px solid var(--line);border-radius:9px;font-size:12px}.missing-pill b{color:var(--red)}
+.form-grid{display:grid;gap:16px}.form-grid.one{grid-template-columns:1fr}.form-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.form-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}.form-grid label{display:block;font-size:12px;font-weight:800;margin-bottom:7px;color:#405047}.form-grid input,.form-grid select,.search-contract-row input,.item-count-row input{width:100%;height:43px;border:1px solid #ccd6d0;border-radius:8px;padding:0 11px;background:#fff;outline:none}.form-grid input:focus,.form-grid select:focus,.search-contract-row input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,128,55,.08)}.form-grid input:disabled{background:#eef2ef;color:#5e6a64}.value-display{background:#f5f8f6;border:1px dashed #bfd0c5;border-radius:9px;padding:9px 12px;display:flex;flex-direction:column;justify-content:center;min-height:43px}.value-display span{font-size:10px;color:var(--muted);font-weight:800}.value-display strong{font-size:16px;color:var(--green);margin-top:3px}.value-display.highlight{background:#fff9df;border-color:#e3cf71}
+.search-contract-row{display:flex;gap:10px;align-items:center}.search-contract-row input{flex:1}.search-result{min-height:20px;margin-top:10px;color:var(--green);font-size:12px;font-weight:700}.item-count-row{display:flex;align-items:center;gap:10px;margin-bottom:15px}.item-count-row label{font-size:12px;font-weight:800}.item-count-row input{width:100px}.item-card,.taksir-card{border:1px solid #dce7df;border-radius:12px;padding:15px;margin-bottom:12px;background:#f8fbf9}.taksir-card{background:#fffdf2;border-color:#eadf9d}.item-card-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px}.taksir-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.3fr 1.3fr;gap:12px;align-items:end}.item-card label,.taksir-card label{display:block;font-size:11px;font-weight:800;color:#59665f;margin-bottom:6px}.item-card input,.item-card select,.taksir-card input,.taksir-card select{width:100%;height:40px;border:1px solid #ccd6d0;border-radius:8px;padding:0 10px;background:#fff}.read-only-box{height:40px;border:1px solid #dfe4e0;border-radius:8px;background:#f2f4f3;display:flex;align-items:center;padding:0 10px;font-size:12px;font-weight:700}.totals-row{margin-top:12px}.calc-note{margin-top:15px;padding:14px 16px;background:#fff9df;border:1px solid #eadb9d;border-radius:10px;color:#5c5124;font-size:12px;line-height:1.6}.formula-box{margin-top:14px;padding:13px;background:#f5f8f6;border-radius:9px;color:#4c5b53;font-size:12px;line-height:1.6}.save-row{text-align:right;margin:20px 0}.tabs{display:flex;gap:8px;margin-top:10px}.subtab{border:1px solid var(--line);background:#fff;padding:10px 15px;border-radius:9px;font-weight:800;cursor:pointer}.subtab.active{background:var(--green);color:#fff}.monitor-pane{display:none}.monitor-pane.active{display:block}.chart{height:460px}.export-actions{margin-top:18px;display:flex;justify-content:flex-end}
+#toast-container{position:fixed;right:20px;bottom:20px;z-index:2000;display:flex;flex-direction:column;gap:10px}.toast{background:#183d2a;color:#fff;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.2);font-size:13px;font-weight:700}.toast.bad{background:#b42318}
+@media(max-width:1100px){.sidebar{width:190px}.main{margin-left:190px;width:calc(100% - 190px)}.grid-4,.form-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}.taksir-grid{grid-template-columns:1.5fr 1fr 1fr 1fr}.hero-card{flex-direction:column;align-items:flex-start}}
+@media(max-width:760px){.sidebar{position:static;width:100%;height:auto}.app{display:block}.main{margin-left:0;width:100%;padding:0 14px 30px}.sidebar nav{display:flex;flex-direction:column}.side-footer{display:none}.topbar{position:static}.grid-2,.grid-3,.grid-4,.form-grid.three,.form-grid.four{grid-template-columns:1fr}.search-contract-row{flex-direction:column;align-items:stretch}.table-search{min-width:0;width:100%}.item-card-grid,.taksir-grid{grid-template-columns:1fr}.auth-card{padding:38px 26px}.auth-card h1{font-size:23px}}
+
+/* Dashboard polish */
+.dashboard-charts{align-items:stretch}.chart-panel{min-width:0}.chart{height:260px;min-height:260px}.dashboard-filter{padding:16px 18px}.dashboard-filter .form-grid{margin:0;max-width:420px}
+.table-wrap{max-width:100%;overflow:auto}.table-wrap table{min-width:1100px}.panel-head{gap:12px}.panel-head h3{min-width:0}
+
+/* Auction calculation flow */
+.auction-flow{display:grid;grid-template-columns:1.05fr .95fr 1.05fr .8fr;gap:14px;align-items:stretch}.auction-column,.auction-final{background:#fbfcfb;border:1px solid #e3ebe6;border-radius:14px;padding:15px}.flow-stack{display:flex;flex-direction:column;gap:4px}.flow-row,.flow-total{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:12px}.flow-row span{color:#65736b}.flow-row strong{font-weight:700}.flow-total{border-top:1px solid #dce6df;margin-top:3px;padding-top:11px;color:#173c29}.flow-total strong{font-size:15px;color:var(--green)}.flow-arrow{font-size:26px;color:var(--green);font-weight:800;text-align:center;margin:4px 0}.flow-result,.limit-result,.mini-result{padding:13px;border-radius:11px;background:#edf7f0;margin-top:7px}.flow-result span,.limit-result span,.mini-result span,.discount-status span,.discount-pct span{display:block;color:#5f6e66;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}.flow-result strong,.limit-result strong,.mini-result strong{display:block;color:var(--green);font-size:17px;margin-top:5px}.flow-result small,.limit-result em,.auction-final small{display:block;color:#78857e;font-size:10px;margin-top:4px}.compare-card{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;background:#fff;padding:10px;border:1px solid #e3ebe6;border-radius:11px}.compare-card span{display:block;font-size:9px;color:#718078;font-weight:800}.compare-card strong{font-size:13px;color:#183d2a}.compare-symbol{font-size:10px;color:#94a099;font-weight:900}.limit-result{background:#fff8d9;border-color:#eadb9d}.limit-result strong{font-size:21px}.limit-result em{font-style:normal}.mini-result{background:#f3f6f4}.discount-equation{display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:center;margin-top:10px;padding:10px;border-radius:10px;background:#fff}.discount-equation strong{font-size:11px;color:#526058}.discount-equation span{font-size:9px;color:#7a8780}.discount-equation b{grid-column:2;color:var(--green);font-size:13px}.discount-status,.discount-pct{margin-top:9px;padding:9px 10px;border-radius:10px;background:#fff}.discount-status strong{display:block;margin-top:4px;font-size:12px}.discount-status small{display:block;color:#8a958f;font-size:9px;margin-top:3px}.discounted{color:#a96a00}.not-discounted{color:#168a4a}.discount-pct strong{display:block;color:#173c29;font-size:16px;margin-top:4px}.auction-final{display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#00662c,#008037);color:#fff;border:0;box-shadow:0 12px 28px rgba(0,102,44,.18)}.auction-final span{font-size:11px;font-weight:800;opacity:.78;text-transform:uppercase;letter-spacing:.6px}.auction-final strong{font-size:25px;line-height:1.15;margin-top:9px}.auction-final small{color:rgba(255,255,255,.72)}
+.taksir-grid{grid-template-columns:1.55fr .8fr .9fr .9fr 1.2fr 1.2fr}.taksir-card .read-only-box{background:#f5f6f5}.dashboard-charts{gap:14px}.dashboard-charts .panel{margin-top:0}.dashboard-charts .panel-head{margin-bottom:5px}.dashboard-charts .panel-head h3{font-size:14px}.dashboard-filter{margin-top:0}.dashboard-filter .form-grid{max-width:360px}.page{padding-top:14px}.section-title{display:none}.chart{height:390px}.monitor-pane .panel{margin-top:14px}.tabs{margin-top:0;margin-bottom:14px}
+@media(max-width:1200px){.auction-flow{grid-template-columns:1fr 1fr}.auction-final{grid-column:1/-1;min-height:110px}.taksir-grid{grid-template-columns:1.5fr .8fr .9fr .9fr 1.2fr}}@media(max-width:760px){.auction-flow{grid-template-columns:1fr}.auction-final{grid-column:auto}.splash-inner h1{font-size:27px}.splash-logo{width:88px;height:88px}}
+
+/* V6 premium calculation flow + editable revaluation */
+.currency-input{font-variant-numeric:tabular-nums;letter-spacing:.1px}
+.taksir-card{background:linear-gradient(135deg,#fffdf4 0%,#fff 70%);border:1px solid #eadf9d;box-shadow:0 7px 20px rgba(87,72,17,.045)}
+.taksir-grid{grid-template-columns:1.35fr .85fr .95fr 1.25fr 1.25fr 1.35fr}
+.taksir-card input,.taksir-card select{background:#fff;border-color:#d5ddd7}
+.taksir-card .item-npbl{background:#edf7f0;border-color:#c9dfd0;color:#086b36;font-weight:800}
+.taksir-card .item-selisih{background:#f6f8f7;font-weight:800}
+.auction-visual{display:grid;grid-template-columns:1.1fr auto .95fr 1.2fr 1.1fr 1fr 1.15fr;gap:10px;align-items:stretch}
+.calc-stage,.calc-compare,.calc-discount,.final-result{min-width:0;border:1px solid #e2ebe5;border-radius:16px;background:#fbfdfc;padding:16px;box-shadow:0 5px 18px rgba(23,60,41,.035)}
+.stage-label{font-size:9px;font-weight:900;letter-spacing:1.05px;color:#718078;text-transform:uppercase;margin-bottom:12px}
+.calc-lines{display:flex;flex-direction:column;gap:0}.calc-lines>div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed #e3ebe6;font-size:11px}.calc-lines>div:last-child{border-bottom:0}.calc-lines span{color:#69766f}.calc-lines strong{color:#1a3d2c;text-align:right;font-variant-numeric:tabular-nums}
+.calc-total{margin-top:8px;padding-top:11px;border-top:2px solid #dce7e0;display:flex;justify-content:space-between;gap:10px;align-items:end}.calc-total span{font-size:10px;font-weight:900;color:#496156}.calc-total strong{font-size:16px;color:var(--green);font-variant-numeric:tabular-nums}
+.calc-connector{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--green);gap:3px;min-width:42px}.calc-connector span{font-size:9px;font-weight:900;white-space:nowrap;background:#edf7f0;border:1px solid #cfe3d5;padding:5px 7px;border-radius:999px}.calc-connector b{font-size:24px;line-height:1}
+.hml-stage{background:linear-gradient(145deg,#eef8f1,#fbfdfc);border-color:#cfe3d5}.big-value{font-size:21px;font-weight:900;color:#08713a;line-height:1.2;font-variant-numeric:tabular-nums}.formula-caption{font-size:9px;color:#7b8982;margin-top:8px;line-height:1.4}
+.calc-compare{background:#fff}.compare-values{display:grid;grid-template-columns:1fr auto 1fr;gap:7px;align-items:center}.compare-values div{padding:9px;background:#f6f8f7;border-radius:10px}.compare-values small{display:block;font-size:8px;color:#7b8881;font-weight:900;letter-spacing:.6px}.compare-values strong{display:block;margin-top:4px;font-size:11px;color:#183d2a;white-space:nowrap}.compare-values>span{font-size:8px;font-weight:900;color:#9aa49f}.limit-winner{margin-top:10px;padding:12px;border-radius:12px;background:#fff8dc;border:1px solid #eadb9d}.limit-winner span{display:block;font-size:8px;font-weight:900;color:#806e20;text-transform:uppercase;letter-spacing:.45px}.limit-winner strong{display:block;margin-top:5px;font-size:18px;color:#705d12}.limit-winner small{display:block;margin-top:4px;color:#8a7c40;font-size:9px}.sub-result{margin-top:8px;padding:9px 11px;border-radius:10px;background:#f5f7f6}.sub-result span{display:block;font-size:8px;color:#78857e;font-weight:800}.sub-result strong{display:block;margin-top:4px;font-size:12px;color:#2c4d3b}
+.hmls-stage{background:#f8fbf9}.calc-discount{background:#fffaf0;border-color:#eee0ae}.discount-formula{display:grid;grid-template-columns:1fr auto 1fr;gap:5px;align-items:center;padding:11px;border-radius:11px;background:#fff;border:1px solid #eee5c8}.discount-formula strong{font-size:10px;color:#56645c;overflow:hidden;text-overflow:ellipsis}.discount-formula span{font-weight:900;color:#9a8b50}.discount-formula b{text-align:right;color:#a46b00;font-size:12px}.discount-state,.discount-percent{margin-top:8px;padding:10px;border-radius:10px;background:#fff}.discount-state span,.discount-percent span{display:block;font-size:8px;color:#7c887f;font-weight:900;text-transform:uppercase;letter-spacing:.5px}.discount-state strong,.discount-percent strong{display:block;margin-top:4px;font-size:13px}.discount-state small{display:block;margin-top:3px;color:#8d958f;font-size:8px}.discount-percent strong{color:#725c12;font-size:16px}.final-result{background:linear-gradient(150deg,#075f31,#0a8b49);color:#fff;border:0;box-shadow:0 12px 30px rgba(0,100,50,.17);display:flex;flex-direction:column;justify-content:center}.final-result .stage-label{color:rgba(255,255,255,.64)}.final-result>span{font-size:10px;font-weight:800;line-height:1.4;color:rgba(255,255,255,.82)}.final-result>strong{display:block;margin-top:8px;font-size:20px;line-height:1.15;word-break:break-word}.final-result>small{margin-top:7px;color:rgba(255,255,255,.72);font-size:8px;line-height:1.4}
+@media(max-width:1450px){.auction-visual{grid-template-columns:1fr 42px 1fr 1.25fr 1fr 1fr}.final-result{grid-column:span 2}.taksir-grid{grid-template-columns:1.5fr .8fr .9fr 1.1fr 1.1fr 1.2fr}}
+@media(max-width:1100px){.auction-visual{grid-template-columns:1fr 1fr}.calc-connector{display:none}.final-result{grid-column:1/-1}.taksir-grid{grid-template-columns:1.5fr 1fr 1fr 1.2fr 1.2fr}}
+@media(max-width:760px){.auction-visual{grid-template-columns:1fr}.final-result{grid-column:auto}.taksir-grid{grid-template-columns:1fr}.calc-connector{display:none}}
+
+/* V7 calculation-flow readability: 1-3 top, 4-6 bottom */
+.calculation-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .calculation-flow { grid-template-columns: 1fr; }
+}
+.global-npbl-up-diff {
+  margin: 12px 0 18px;
+}
+
+/* V8 auction layout: 01-03 top, 04-06 bottom */
+.auction-visual{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:16px!important;
+  align-items:stretch!important;
+}
+.auction-visual .calc-connector{display:none!important}
+.auction-visual .final-result{grid-column:auto!important;min-height:0!important}
+.global-npbl-up-summary{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:0 0 14px;
+}
+.global-summary-item{
+  padding:13px 15px;
+  border:1px solid #e3ebe6;
+  border-radius:13px;
+  background:#fbfdfc;
+}
+.global-summary-item span{
+  display:block;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.65px;
+  text-transform:uppercase;
+  color:#718078;
+}
+.global-summary-item strong{
+  display:block;
+  margin-top:5px;
+  font-size:17px;
+  color:#173c29;
+}
+.global-summary-item small{
+  display:block;
+  margin-top:4px;
+  color:#7b8881;
+  font-size:9px;
+}
+.global-summary-item.positive{background:#edf8f1;border-color:#cde4d4}
+.global-summary-item.negative{background:#fff2f1;border-color:#f0cfcb}
+.global-summary-item.positive strong{color:#08713a}
+.global-summary-item.negative strong{color:#b52b22}
+.global-summary-item.neutral strong{color:#56645c}
+@media(max-width:1050px){.auction-visual{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:700px){.auction-visual{grid-template-columns:1fr!important}.global-npbl-up-summary{grid-template-columns:1fr}}
+
+/* V9: compact revaluation layout — no unused slot */
+.taksir-ulang-grid,
+.revaluation-grid,
+.taksir-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+.taksir-ulang-grid > :empty,
+.revaluation-grid > :empty,
+.taksir-grid > :empty{display:none!important}
+
+/* V9: emphasize Minimal Penjualan Lelang */
+.minimal-penjualan-lelang,
+.calc-minimal-penjualan,
+[data-field="minimal-penjualan-lelang"]{
+  font-weight:800!important;
+}
+
+/* V9/V10: exactly fit five editable/recalculated revaluation fields */
+.taksir-grid{grid-template-columns:1.25fr .85fr .9fr 1.15fr 1.15fr!important;gap:10px!important;}
+.sub-result span,.sub-result strong{font-weight:900!important;}
+
+/* V17: auction calculation polish */
+.auction-visual{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;align-items:stretch!important}
+.auction-visual .calc-card,.auction-visual .calc-step,.auction-visual .final-result{min-width:0!important}
+.auction-visual .formula{font-size:11px!important;line-height:1.45!important;color:#69776f!important}
+.auction-visual .result{font-size:16px!important;font-weight:800!important}
+
+/* V18 — Diskon Lelang: show the correct visual operands */
+.discount-formula,
+.diskon-formula,
+.calc-discount-formula,
+[data-calc="diskon-lelang"]{
+  font-weight:700!important;
+  line-height:1.5!important;
+}
+
+/* V19: rebalance "Perhitungan Minimal Kewajiban Pembeli Lelang" — fill the
+   previously near-empty Harga Minimal Lelang card with a short breakdown so
+   every card in the row carries a comparable amount of content, and add
+   subtle flow connectors so the six cards read as one left-to-right,
+   top-to-bottom sequence instead of six disconnected boxes. */
+.auction-visual{row-gap:34px!important}
+.calc-stage,.calc-compare,.calc-discount,.final-result{display:flex;flex-direction:column}
+.hml-stage{justify-content:flex-start}
+.hml-mini-lines{display:flex;flex-direction:column;gap:0;margin-bottom:2px}
+.hml-mini-lines>div{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed #e3ebe6;font-size:11px}
+.hml-mini-lines>div:last-child{border-bottom:0}
+.hml-mini-lines span{color:#69766f}
+.hml-mini-lines strong{color:#1a3d2c;font-variant-numeric:tabular-nums}
+.hml-value-block{margin-top:auto;padding-top:14px;border-top:2px solid #dce7e0}
+.hml-stage .big-value{font-size:22px}
+
+/* Flow connectors between adjacent cards within each row of three */
+@media(min-width:1051px){
+  .auction-visual{position:relative}
+  .auction-visual>.obligation-stage,
+  .auction-visual>.hml-stage,
+  .auction-visual>.hmls-stage,
+  .auction-visual>.calc-discount{position:relative}
+  .auction-visual>.obligation-stage::after,
+  .auction-visual>.hml-stage::after,
+  .auction-visual>.hmls-stage::after,
+  .auction-visual>.calc-discount::after{
+    content:"→";
+    position:absolute;
+    top:50%;
+    right:-15px;
+    transform:translate(50%,-50%);
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:#edf7f0;
+    border:1px solid #cfe3d5;
+    color:var(--green);
+    font-size:13px;
+    font-weight:900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:3;
+    box-shadow:0 2px 6px rgba(23,60,41,.08);
+  }
+}
+/* Row/stage numbering: make the "01 · ..." label read as a clearer step chip */
+.stage-label{display:inline-flex;align-items:center;gap:0;background:#f2f6f3;border:1px solid #e3ebe6;border-radius:999px;padding:5px 11px}
+.final-result .stage-label{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2)}
+
+/* V20: additional dashboard section — Indikator Lelang & Aging */
+.dashboard-section-head{margin:26px 0 14px;padding:0}
+.dashboard-section-head h3{font-size:16px}
+.dashboard-section-head p{font-size:12px;color:var(--muted);margin:5px 0 0}
+
+
+/* V7 compact professional UI */
+:root{--ui-font:12px}
+body{font-size:12px}
+.sidebar{width:204px;padding:14px 10px;transition:width .22s ease}
+.side-brand{padding:5px 5px 16px;position:relative}
+.side-brand-copy{min-width:0}
+.sidebar-toggle{margin-left:auto;flex:0 0 28px;width:28px;height:28px;border:1px solid rgba(255,255,255,.18);border-radius:8px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:18px;line-height:1}
+.main{margin-left:204px;width:calc(100% - 204px);padding:0 20px 28px;transition:margin-left .22s ease,width .22s ease}
+.app.sidebar-collapsed .sidebar{width:58px;padding:12px 7px}
+.app.sidebar-collapsed .main{margin-left:58px;width:calc(100% - 58px)}
+.app.sidebar-collapsed .side-brand{justify-content:center;padding-left:0;padding-right:0}
+.app.sidebar-collapsed .side-brand-copy,.app.sidebar-collapsed .nav-group-toggle span,.app.sidebar-collapsed .nav-item span,.app.sidebar-collapsed .chevron,.app.sidebar-collapsed .side-footer{display:none}
+.app.sidebar-collapsed .sidebar-toggle{position:absolute;right:-8px;top:8px;background:#00662c;z-index:2}
+.app.sidebar-collapsed .nav-group-toggle,.app.sidebar-collapsed .nav-item{justify-content:center;padding-left:8px;padding-right:8px}
+.app.sidebar-collapsed .nav-submenu .nav-item:before{display:none}
+.app.sidebar-collapsed .nav-submenu{padding-left:0}
+
+.topbar{padding:13px 0 11px}
+.page-kicker,.eyebrow{font-size:9px}
+.topbar h2{font-size:18px}
+.user-pill{padding:7px 10px;font-size:11px}
+.page{padding-top:10px}
+.hero-card{border-radius:12px;padding:16px 18px}
+.hero-card h1{font-size:20px}.hero-card p{font-size:11px}
+.grid-2{gap:10px}.grid-3{gap:10px;margin:10px 0}.grid-4{gap:10px}
+.kpi-card,.summary-box{border-radius:10px;padding:12px 13px}
+.kpi-card span,.summary-box span{font-size:10px}
+.kpi-card strong,.summary-box strong{font-size:18px;margin-top:5px}
+.panel{border-radius:11px;margin-top:10px;padding:13px}
+.panel-head{gap:9px;margin-bottom:9px}
+.panel-head h3{font-size:13px}.panel-head p{font-size:10px;margin-top:3px}
+.btn{padding:8px 12px;border-radius:7px;font-size:11px}.btn-lg{padding:10px 14px;font-size:12px}
+.form-grid{gap:9px}.form-grid label{font-size:10px;margin-bottom:5px}
+.form-grid input,.form-grid select,.search-contract-row input,.item-count-row input{height:35px;padding:0 9px;font-size:11px}
+.value-display{min-height:35px;padding:7px 9px}.value-display span{font-size:8px}.value-display strong{font-size:13px}
+.search-contract-row{gap:7px}.search-result{font-size:10px;margin-top:6px}
+.table-search{height:34px;min-width:190px;padding:0 9px;font-size:10px}
+.table-wrap{max-height:480px;border-radius:7px}
+table{font-size:9.5px;min-width:0;width:100%;table-layout:auto}
+th{padding:7px 6px;font-size:9px}td{padding:6px;white-space:nowrap}
+.table-wrap table{min-width:0}
+.missing-summary{gap:6px}.missing-pill{padding:6px 8px;font-size:9px}
+.status-chip{padding:4px 6px;font-size:8px}
+.chart{height:220px;min-height:220px}
+.monitor-pane .panel{margin-top:9px}
+.monitor-pane .grid-4{gap:9px}
+.dashboard-charts{gap:10px}
+.dashboard-charts .panel{padding:10px}
+.dashboard-charts .panel-head h3{font-size:11px}
+.dashboard-charts .chart{height:170px;min-height:170px}
+.dashboard-section-head{margin:8px 0 6px}
+.dashboard-section-head h3{font-size:12px}
+.dashboard-section-head p{font-size:9px}
+.dashboard-filter{padding:10px 12px}
+.dashboard-filter .form-grid{max-width:300px}
+#page-dashboard{height:calc(100vh - 72px);overflow:hidden}
+#page-dashboard .grid-4{gap:8px}
+#page-dashboard .summary-box{padding:9px 11px}
+#page-dashboard .summary-box strong{font-size:16px}
+#page-dashboard .dashboard-charts .panel{margin-top:0}
+#page-dashboard .dashboard-charts{grid-template-columns:repeat(2,minmax(0,1fr))}
+#page-dashboard .dashboard-section-head+ .grid-4{margin-top:0}
+#page-dashboard .dashboard-section-head+ .grid-4 .summary-box{padding:8px 10px}
+#page-dashboard .dashboard-section-head+ .grid-4 .summary-box strong{font-size:15px}
+#page-dashboard .dashboard-charts:last-child{margin-top:8px}
+
+.compact-kpis{margin:10px 0}
+.input-top-section{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:10px;align-items:start}
+.input-top-section>.panel{margin-top:0}
+.input-top-section>.panel:first-child{order:2}
+.input-top-section>.panel:last-child{order:1}
+.hdle-compact .panel-head{margin-bottom:7px}
+#input-contract-info{margin-top:10px}
+#input-contract-info .form-grid.three{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+#input-contract-info .form-grid.three>div:nth-child(1){grid-column:span 1}
+#input-contract-info .form-grid.three>div:nth-child(2){grid-column:span 1}
+#input-contract-info .form-grid.three>div:nth-child(3){grid-column:span 1}
+#input-contract-info .form-grid.three>div:nth-child(4){grid-column:span 1}
+#input-contract-info .form-grid.three>div:nth-child(5){grid-column:span 1}
+#input-contract-info .form-grid.three>div:nth-child(6){grid-column:span 1}
+#input-items .panel:first-child{margin-top:10px}
+#input-items .panel:not(:first-child){margin-top:8px}
+#input-obligation .panel{margin-top:10px}
+#page-input .form-grid.four{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+#page-input .item-card,#page-input .taksir-card{padding:10px;margin-bottom:8px}
+#page-input .item-card-grid{gap:8px}
+#page-input .taksir-grid{gap:8px}
+#page-input .item-card input,#page-input .item-card select,#page-input .taksir-card input,#page-input .taksir-card select{height:34px;font-size:10px}
+#page-input .item-card label,#page-input .taksir-card label{font-size:9px;margin-bottom:4px}
+#page-input .auction-visual{gap:6px}
+#page-input .calc-stage,#page-input .calc-compare,#page-input .calc-discount,#page-input .final-result{padding:9px;border-radius:10px}
+#page-input .calc-lines>div{padding:5px 0;font-size:9px}
+#page-input .calc-total{padding-top:7px}
+#page-input .calc-total strong{font-size:12px}
+#page-input .big-value{font-size:16px}
+#page-input .final-result>strong{font-size:16px}
+.save-row{margin:10px 0;text-align:right}
+
+#page-contracts .panel{margin-top:8px}
+#page-contracts .table-wrap{max-height:calc(100vh - 190px)}
+#page-export .panel{margin-top:8px}
+#page-export .table-wrap{max-height:calc(100vh - 230px)}
+#page-export table{font-size:9px}
+#page-monitoring .chart{height:230px;min-height:230px}
+#page-monitoring table{font-size:9.5px}
+#page-monitoring th,#page-monitoring td{padding:6px}
+#page-monitoring .table-wrap{overflow-x:hidden}
+#page-monitoring table{table-layout:fixed}
+#page-monitoring th,#page-monitoring td{overflow:hidden;text-overflow:ellipsis}
+#page-monitoring .grid-4 .summary-box strong{font-size:16px}
+
+@media(max-width:1200px){
+ .input-top-section{grid-template-columns:1fr}
+ .input-top-section>.panel:first-child,.input-top-section>.panel:last-child{order:initial}
+ #input-contract-info .form-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #page-input .form-grid.four{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #page-dashboard{height:auto;overflow:visible}
+}
+@media(max-width:760px){
+ .sidebar{position:static;width:100%}.app.sidebar-collapsed .sidebar{width:100%}.app.sidebar-collapsed .main{margin-left:0;width:100%}
+ .app.sidebar-collapsed .side-brand-copy,.app.sidebar-collapsed .nav-group-toggle span,.app.sidebar-collapsed .nav-item span,.app.sidebar-collapsed .chevron,.app.sidebar-collapsed .side-footer{display:block}
+ .app.sidebar-collapsed .sidebar-toggle{position:static}
+ .main{margin-left:0;width:100%;padding:0 12px 24px}
+ .input-top-section{display:block}.input-top-section>.panel{margin-top:8px}
+ #input-contract-info .form-grid.three,#input-credit-obligation .form-grid.four{grid-template-columns:1fr 1fr}
+ #page-dashboard .dashboard-charts{grid-template-columns:1fr}
+ #page-dashboard{height:auto}
+}
+
+/* V21 — six fixed sidebar heads + true separated sub-views */
+.sidebar{width:224px;padding:12px 10px}
+.main{margin-left:224px;width:calc(100% - 224px);padding:0 18px 18px}
+.sidebar nav{display:flex;flex-direction:column;gap:4px}
+.nav-group{margin:0}
+.nav-group-toggle{width:100%;min-height:38px;padding:8px 10px;border-radius:9px;display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700}
+.nav-group-toggle span{flex:1;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-group-toggle .chevron{font-style:normal;font-size:11px;opacity:.75}
+.nav-submenu{display:none!important;margin:2px 0 5px 9px;padding:3px 0 3px 9px;border-left:1px solid rgba(255,255,255,.15);gap:2px}
+.nav-submenu.open{display:flex!important;flex-direction:column}
+.nav-item{min-height:32px;padding:7px 9px;border-radius:7px;font-size:10px;gap:8px}
+.nav-item span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-subitem{padding-left:9px!important}
+.nav-group-toggle.active{background:rgba(255,255,255,.10)}
+.nav-item.active{background:#fff;color:#17452d;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+
+/* A submenu is a view, not an anchor on one long page. */
+.page-section{display:none!important}
+.page-section.active{display:block!important}
+.monitor-pane{display:none!important}
+.monitor-pane.active{display:block!important}
+.page{min-height:calc(100vh - 70px);overflow:visible}
+.page.active{overflow:visible}
+#page-import,#page-input,#page-monitoring,#page-contracts,#page-export{overflow:visible}
+
+/* Import / preview: compact and contained. */
+#import-preview .table-wrap,#page-contracts .table-wrap,#page-export .table-wrap{max-height:calc(100vh - 175px);overflow:auto}
+#import-preview table,#page-contracts table,#page-export table{font-size:9px;table-layout:fixed;width:100%}
+#import-preview th,#page-contracts th,#page-export th{font-size:8.5px;padding:6px 5px}
+#import-preview td,#page-contracts td,#page-export td{padding:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Input & Update: search left, HDLE right; contract information fits in one row. */
+#input-search{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:10px;align-items:start}
+#input-search.active{display:grid!important}
+#input-search>.panel{min-width:0}
+#input-search .panel-head{margin-bottom:7px}
+#input-search .panel-head p{display:none}
+#input-search .search-contract-row{display:flex;align-items:center}
+#input-search .search-contract-row input{flex:1;min-width:0}
+#input-search .search-contract-row .btn{white-space:nowrap}
+#input-search .value-display{min-width:0}
+#input-contract-info .panel-head,#input-credit-obligation .panel-head{margin-bottom:6px}
+#input-contract-info .panel-head h3,#input-credit-obligation .panel-head h3{font-size:12px}
+#input-contract-info .form-grid.three{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
+#input-contract-info .form-grid.three>div{min-width:0}
+#input-contract-info input,#input-contract-info select{height:33px;font-size:10px}
+#input-credit-obligation .form-grid.four{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+#input-credit-obligation .form-grid.four>div{min-width:0}
+#input-credit-obligation input,#input-credit-obligation select{height:33px;font-size:10px}
+#input-credit-obligation .value-display{min-width:0}
+
+/* Input item/taksir view: compact, no inherited long-page spacing. */
+#input-items.active{display:block!important}
+#input-items>.panel{margin-top:0}
+#input-items .item-count-row{margin-bottom:8px}
+#input-items .panel.accent-yellow{margin-top:8px}
+#input-items .save-row{margin-top:8px;display:flex;justify-content:flex-end}
+#input-items .save-row .btn{min-width:180px}
+#input-obligation.active{display:block!important}
+#input-obligation .panel{margin-top:0}
+
+/* Monitoring: only one sub-view exists on screen at a time. */
+#page-monitoring>.monitor-pane.active{display:block!important}
+#page-monitoring .table-wrap{max-height:calc(100vh - 220px);overflow:auto}
+#page-monitoring table{font-size:9px;width:100%;table-layout:fixed}
+#page-monitoring th{font-size:8.5px;padding:6px 5px}
+#page-monitoring td{padding:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-monitoring .chart{height:190px;min-height:190px}
+
+/* KPI cards: prevent overflow; fit text to the card rather than the card to text. */
+.kpi-card,.summary-box,.value-display{min-width:0;overflow:hidden}
+.kpi-card strong,.summary-box strong,.value-display strong{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:clip;font-variant-numeric:tabular-nums}
+#page-dashboard{height:auto;min-height:calc(100vh - 70px);overflow:hidden}
+#page-dashboard .dashboard-filter{margin-bottom:8px}
+#page-dashboard>.grid-4{gap:9px;margin:0 0 9px}
+#page-dashboard .summary-box{padding:9px 10px}
+#page-dashboard .summary-box span{font-size:9px}
+#page-dashboard .summary-box strong{font-size:15px;margin-top:4px}
+#page-dashboard .dashboard-charts{gap:9px;margin:0 0 9px}
+#page-dashboard .dashboard-charts .panel{padding:9px;margin-top:0}
+#page-dashboard .dashboard-charts .chart{height:145px;min-height:145px}
+#page-dashboard .dashboard-charts .panel-head{margin-bottom:5px}
+#page-dashboard .dashboard-charts .panel-head h3{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#page-dashboard .dashboard-section-head{margin:5px 0}
+#page-dashboard .dashboard-section-head h3{font-size:11px}
+#page-dashboard .dashboard-section-head p{font-size:8px}
+#page-dashboard>.grid-4:last-of-type{gap:9px;margin-bottom:9px}
+
+/* Collapsed sidebar keeps the six heads as icon buttons. */
+.app.sidebar-collapsed .sidebar{width:58px;padding:12px 7px}
+.app.sidebar-collapsed .main{margin-left:58px;width:calc(100% - 58px)}
+.app.sidebar-collapsed .nav-group-toggle{min-height:36px;padding:8px;justify-content:center}
+.app.sidebar-collapsed .nav-group-toggle span,.app.sidebar-collapsed .nav-group-toggle .chevron{display:none}
+.app.sidebar-collapsed .nav-submenu{display:none!important}
+
+@media(max-width:1000px){
+  #input-search{grid-template-columns:1fr}
+  #input-search>.panel:nth-child(1),#input-search>.panel:nth-child(2),#input-search>#input-contract-info,#input-search>.panel:nth-child(4){grid-column:1;grid-row:auto}
+  #input-contract-info .form-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #input-search>.panel:nth-child(4) .form-grid.four{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .sidebar{width:190px}.main{margin-left:190px;width:calc(100% - 190px);padding:0 10px 14px}
+  #input-contract-info .form-grid.three,#input-search>.panel:nth-child(4) .form-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #page-dashboard .dashboard-charts{grid-template-columns:1fr}
+}
+
+/* V20 — compact professional navigation, tables and dashboard */
+.sidebar{width:224px;padding:12px 10px}
+.main{margin-left:224px;width:calc(100% - 224px)}
+.nav-group-toggle{font-size:10.5px;letter-spacing:0;text-transform:none;white-space:nowrap}
+.nav-group-toggle>span{min-width:0;white-space:normal;line-height:1.15}
+.nav-group-toggle .chevron{font-size:10px}
+.nav-submenu .nav-item{font-size:9.5px;line-height:1.2;padding:7px 8px 7px 22px;white-space:normal;min-height:32px}
+.nav-submenu .nav-item span{white-space:normal;overflow:visible;text-overflow:clip}
+.nav-item{font-size:10px}
+
+/* Never truncate navigation labels. Let the longest label wrap instead of ellipsis. */
+.nav-group-toggle span,.nav-item span{overflow:visible;text-overflow:clip}
+
+/* Compact, readable tables: wrap cells so all columns fit without a giant horizontal scroll. */
+.table-wrap{overflow:auto;max-width:100%}
+.table-wrap table{width:100%;min-width:0!important;table-layout:auto;font-size:9px}
+.table-wrap th{font-size:8.5px;padding:7px 6px;white-space:normal;line-height:1.15;word-break:break-word}
+.table-wrap td{font-size:8.5px;padding:6px 6px;white-space:normal;line-height:1.2;word-break:break-word;overflow-wrap:anywhere}
+.column-filter{padding:3px!important;background:#f7faf8!important}
+.column-filter input{width:100%;height:25px;border:1px solid #d3ddd7;border-radius:5px;padding:0 5px;font-size:8px;box-sizing:border-box;outline:none;background:#fff}
+.column-filter input:focus{border-color:var(--green)}
+.filter-row th{position:sticky;top:39px;z-index:2}
+
+/* Dashboard: compact two-column composition. Left = KPI/analysis, right = auction & aging indicators. */
+.dashboard-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.72fr);gap:12px;align-items:start}
+.dashboard-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:10px}
+.dashboard-summary-grid .summary-box,.dashboard-indicator-grid .summary-box{padding:9px 10px;min-width:0;overflow:hidden}
+.dashboard-summary-grid .summary-box span,.dashboard-indicator-grid .summary-box span{font-size:8px;line-height:1.15}
+.dashboard-summary-grid .summary-box strong,.dashboard-indicator-grid .summary-box strong{font-size:14px;margin-top:4px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:clip}
+.dashboard-charts{gap:9px}
+.dashboard-charts .panel,.dashboard-indicator-charts .panel{padding:9px;margin-top:0}
+.dashboard-charts .panel-head,.dashboard-indicator-charts .panel-head{margin-bottom:4px}
+.dashboard-charts .panel-head h3,.dashboard-indicator-charts .panel-head h3{font-size:9px;line-height:1.15;white-space:normal}
+.dashboard-charts .chart,.dashboard-indicator-charts .chart{height:125px!important;min-height:125px!important}
+.dashboard-right{min-width:0}
+.dashboard-section-head{margin:0 0 7px}
+.dashboard-section-head h3{font-size:11px}
+.dashboard-section-head p{font-size:8px;line-height:1.3}
+.dashboard-indicator-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:9px}
+.dashboard-indicator-charts{display:grid;grid-template-columns:1fr;gap:9px}
+#page-dashboard .dashboard-filter{padding:9px 11px;margin-top:0;margin-bottom:10px}
+#page-dashboard .dashboard-filter label{font-size:9px}
+#page-dashboard .dashboard-filter select{height:31px;font-size:9px}
+
+/* Monitoring: no chart in branch view; tables use the same inline column filtering concept as Preview Data. */
+#page-monitoring .panel-head{margin-bottom:6px}
+#page-monitoring .panel-head h3{font-size:11px}
+#page-monitoring .grid-4{gap:9px}
+#page-monitoring .grid-4 .summary-box{padding:9px 10px}
+#page-monitoring .grid-4 .summary-box span{font-size:8px}
+#page-monitoring .grid-4 .summary-box strong{font-size:14px}
+#page-monitoring .table-wrap{overflow-x:hidden}
+
+/* Input subviews: only a tiny context strip is shown on the item/revaluation and obligation views. */
+.input-context{display:grid;grid-template-columns:1.05fr 1.4fr 1fr 1fr auto;gap:7px;align-items:center;margin:0 0 9px;padding:7px 9px;background:#f7faf8;border:1px solid #e1e9e4;border-radius:9px}
+.input-context>div{min-width:0}
+.input-context span{display:block;font-size:7px;color:#7a8780;text-transform:uppercase;font-weight:800;letter-spacing:.35px}
+.input-context strong{display:block;font-size:9px;color:#244c37;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.input-context-hdle{padding-left:9px;border-left:1px solid #dde6e0}
+#input-items .panel,#input-obligation .panel{margin-top:0}
+
+/* Data Contract / Export: compact fit-to-column presentation. */
+#page-contracts .table-wrap,#page-export .table-wrap,#import-preview .table-wrap{overflow-x:hidden}
+#page-contracts table,#page-export table,#import-preview table{min-width:0!important}
+#page-contracts th,#page-export th,#import-preview th{font-size:8px;padding:6px 5px}
+#page-contracts td,#page-export td,#import-preview td{font-size:8px;padding:5px}
+
+/* Hide the old preview/search bars; filtering is now done directly in selected column headers. */
+#page-import .panel-head .table-search,#page-monitoring .table-search{display:none!important}
+
+/* Sidebar collapsed state remains compact and icon-only. */
+.app.sidebar-collapsed .sidebar{width:58px;padding:12px 7px}
+.app.sidebar-collapsed .main{margin-left:58px;width:calc(100% - 58px)}
+
+@media(max-width:1100px){
+ .dashboard-layout{grid-template-columns:1fr}
+ .dashboard-right{order:2}
+ .dashboard-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .input-context{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .input-context-hdle{border-left:0;padding-left:0}
+}
+@media(max-width:760px){
+ .dashboard-summary-grid,.dashboard-indicator-grid{grid-template-columns:1fr 1fr}
+ .dashboard-charts{grid-template-columns:1fr}
+ .dashboard-charts .chart,.dashboard-indicator-charts .chart{height:130px!important}
+ .sidebar{width:100%}.main{margin-left:0;width:100%}
+}
+
+.input-search-top-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(360px,.95fr);gap:10px;align-items:stretch}
+.input-search-top-grid .panel{margin-top:0}
+.input-search-panel .panel-head,.hdle-global-panel .panel-head{margin-bottom:9px}
+.input-search-panel .panel-head h3,.hdle-global-panel .panel-head h3{font-size:12px}
+.input-search-panel .panel-head p,.hdle-global-panel .panel-head p{font-size:9px}
+.hdle-global-panel .form-grid{gap:7px}
+.hdle-global-panel label{font-size:8px}
+.hdle-global-panel input{height:34px;font-size:10px}
+.hdle-global-panel .value-display{min-height:34px;padding:7px 9px}
+.hdle-global-panel .value-display span{font-size:8px}
+.hdle-global-panel .value-display strong{font-size:12px}
+@media(max-width:900px){.input-search-top-grid{grid-template-columns:1fr}.hdle-global-panel{min-width:0}}
+
+/* FINAL V7.1 precision fixes */
+/* Tables: readable columns, never squeeze the whole table into viewport */
+#page-import .table-wrap,#page-contracts .table-wrap,#page-export .table-wrap{overflow-x:auto!important}
+#page-import table,#page-contracts table,#page-export table{width:max-content!important;min-width:100%!important;table-layout:auto!important}
+#page-import th,#page-contracts th,#page-export th{white-space:nowrap!important;word-break:normal!important;overflow:visible!important;text-overflow:clip!important}
+#page-import td,#page-contracts td,#page-export td{white-space:nowrap!important;word-break:normal!important;overflow:visible!important;text-overflow:clip!important}
+/* Preview search/filter row stays above the data, not inside the table */
+#import-preview .filter-row{display:none!important}
+#import-preview .panel-head{flex-direction:column;align-items:stretch}
+#import-preview .panel-head>div{width:100%}
+#import-preview .preview-searchbar{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:7px}
+#import-preview .preview-searchbar input{height:31px;border:1px solid #ccd6d0;border-radius:7px;padding:0 8px;font-size:10px}
+/* Monitoring searches above the table */
+.monitoring-search{min-width:180px!important;width:280px!important;flex:0 0 280px}
+#page-monitoring .table-wrap{overflow-x:auto!important}
+#page-monitoring table{width:max-content!important;min-width:100%!important;table-layout:auto!important}
+#page-monitoring th,#page-monitoring td{white-space:nowrap!important;word-break:normal!important;overflow:visible!important;text-overflow:clip!important}
+/* Remove magnifier-looking glyphs from contract search */
+#input-search .panel-head h3{font-size:13px}
+/* Input/taksir context and cards compact enough to keep Save/Update visible */
+#input-items .input-context,#input-obligation .input-context{padding:5px 8px;margin-bottom:7px;gap:6px}
+#input-items .input-context span,#input-obligation .input-context span{font-size:6.5px}
+#input-items .input-context strong,#input-obligation .input-context strong{font-size:8.5px}
+#input-items .panel{padding:10px;margin-top:7px}
+#input-items .item-card,#input-items .taksir-card{padding:9px;margin-bottom:7px}
+#input-items .item-card-grid,#input-items .taksir-grid{gap:7px}
+#input-items .item-card input,#input-items .item-card select,#input-items .taksir-card input,#input-items .taksir-card select,#input-items .read-only-box{height:32px;font-size:10px}
+#input-items .item-card label,#input-items .taksir-card label{font-size:9px;margin-bottom:4px}
+#input-items .summary-box{padding:7px 9px;border-radius:8px}
+#input-items .summary-box span{font-size:7px}
+#input-items .summary-box strong{font-size:13px}
+#input-items .panel-head{margin-bottom:6px}
+#input-items .panel-head h3{font-size:12px}
+#input-items .panel-head p{font-size:9px}
+#input-items .save-row{margin:9px 0 4px}
+#input-items .save-row .btn{font-size:10px;padding:7px 11px}
+/* Dashboard: 4 charts : indicator area = 1 : 1. The charts themselves are not forced square. */
+#page-dashboard .dashboard-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:10px!important}
+#page-dashboard .dashboard-charts{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+#page-dashboard .dashboard-charts .panel,#page-dashboard .dashboard-indicator-charts .panel{border:1px solid #dfe8e2!important;box-shadow:none!important;border-radius:8px!important}
+#page-dashboard .dashboard-charts .chart,#page-dashboard .dashboard-indicator-charts .chart{height:112px!important;min-height:112px!important}
+#page-dashboard .dashboard-charts .panel-head h3,#page-dashboard .dashboard-indicator-charts .panel-head h3{font-size:8px!important}
+#page-dashboard .dashboard-charts .panel-head,#page-dashboard .dashboard-indicator-charts .panel-head{margin-bottom:2px!important}
+#page-dashboard .dashboard-section-head{border:1px solid #dfe8e2;border-radius:8px;padding:7px 9px;margin:0 0 7px!important}
+#page-dashboard .dashboard-section-head h3{font-size:10px!important}
+#page-dashboard .dashboard-section-head p{font-size:8px!important;margin:2px 0 0!important}
+#page-dashboard .dashboard-indicator-grid{gap:6px!important}
+#page-dashboard .dashboard-indicator-grid .summary-box{padding:7px 8px!important}
+#page-dashboard .dashboard-indicator-grid .summary-box span{font-size:7px!important}
+#page-dashboard .dashboard-indicator-grid .summary-box strong{font-size:12px!important}
+#page-dashboard .dashboard-filter{padding:8px 10px!important;margin-top:7px!important}
+@media(max-width:1100px){#page-dashboard .dashboard-layout{grid-template-columns:1fr!important}#page-dashboard .dashboard-charts{grid-template-columns:repeat(2,minmax(0,1fr))!important}.monitoring-search{width:220px!important;min-width:160px!important;flex-basis:220px!important}}
+
+/* V8 final corrections */
+.page > .page-section:not(.active), .page > .monitor-pane:not(.active){display:none !important;}
+/* Input & Update Kontrak subviews: Cari & Tambahkan Kontrak + HDLE Global
+   belong only to the search subview. They must never appear in the item/taksir
+   or minimal-kewajiban subviews, even if a stale active class remains. */
+#page-input[data-input-section="input-items"] #input-search,
+#page-input[data-input-section="input-obligation"] #input-search{display:none !important;}
+#page-input .input-context{padding:6px 8px !important;gap:7px !important;margin-bottom:7px !important;}
+#page-input .input-context span{font-size:7px !important;}
+#page-input .input-context strong{font-size:9px !important;}
+#page-input .input-context-hdle{padding-left:7px !important;}
+#page-input .save-row{margin-top:6px !important;}
+#page-dashboard .dashboard-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;gap:8px !important;}
+#page-dashboard .dashboard-charts{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:7px !important;}
+#page-dashboard .dashboard-charts .panel,#page-dashboard .dashboard-indicator-charts .panel{padding:6px !important;border:1px solid #dfe8e2 !important;}
+#page-dashboard .dashboard-charts .chart,#page-dashboard .dashboard-indicator-charts .chart{height:175px !important;min-height:175px !important;}
+#page-dashboard .dashboard-charts .panel-head h3,#page-dashboard .dashboard-indicator-charts .panel-head h3{font-size:8px !important;}
+#page-dashboard .dashboard-charts .panel-head p,#page-dashboard .dashboard-indicator-charts .panel-head p{font-size:7px !important;}
+#page-dashboard .dashboard-section-head h3{font-size:9px !important;}
+#page-dashboard .dashboard-section-head p{font-size:7px !important;}
+
+
+/* FINAL UI REVISION — Input & Update Kontrak */
+#input-search{
+  display:grid!important;
+  grid-template-columns:minmax(0,2fr) minmax(0,1fr)!important;
+  grid-template-rows:auto auto auto!important;
+  gap:10px!important;
+  align-items:start!important;
+}
+#input-search > .input-search-panel{
+  grid-column:1!important;
+  grid-row:1!important;
+  margin-top:0!important;
+}
+#input-search > .hdle-global-panel{
+  grid-column:2!important;
+  grid-row:1!important;
+  margin-top:0!important;
+}
+#input-search > #input-contract-info{
+  grid-column:1 / -1!important;
+  grid-row:2!important;
+  margin-top:0!important;
+}
+#input-search > #input-credit-obligation{
+  grid-column:1 / -1!important;
+  grid-row:3!important;
+  margin-top:0!important;
+}
+#input-search .panel-head p{display:none}
+#input-search .search-contract-row{display:flex;align-items:center;gap:7px}
+#input-search .search-contract-row input{flex:1;min-width:0}
+#input-search .search-contract-row .btn{white-space:nowrap}
+#input-search .panel-head{margin-bottom:7px}
+#input-search .panel-head h3{font-size:13px}
+#input-contract-info .panel-head{margin-bottom:6px}
+#input-credit-obligation .panel-head{margin-bottom:6px}
+#input-credit-obligation .form-grid.four{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+#input-credit-obligation .form-grid.four>div{min-width:0}
+
+@media(max-width:900px){
+  #input-search{
+    grid-template-columns:1fr!important;
+    grid-template-rows:auto!important;
+  }
+  #input-search > .input-search-panel,
+  #input-search > .hdle-global-panel,
+  #input-search > #input-contract-info,
+  #input-search > #input-credit-obligation{
+    grid-column:1!important;
+    grid-row:auto!important;
+  }
+  #input-credit-obligation .form-grid.four{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  #input-contract-info .form-grid.three,
+  #input-credit-obligation .form-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+
+/* FINAL UI REVISION — Dashboard charts: compact but readable, with enough room for labels. */
+#page-dashboard .dashboard-charts .chart,
+#page-dashboard .dashboard-indicator-charts .chart{
+  height:145px!important;
+  min-height:145px!important;
+}
+#page-dashboard .dashboard-charts .panel,
+#page-dashboard .dashboard-indicator-charts .panel{
+  padding:7px!important;
+}
+#page-dashboard .dashboard-charts .panel-head,
+#page-dashboard .dashboard-indicator-charts .panel-head{
+  margin-bottom:3px!important;
+}
+
+/* Susunan Kredit & Kewajiban: baris atas 4 field, baris bawah 5 field */
+#input-credit-obligation .credit-obligation-row{display:grid;gap:7px;margin-bottom:7px;}
+#input-credit-obligation .credit-obligation-top{grid-template-columns:repeat(4,minmax(0,1fr));}
+#input-credit-obligation .credit-obligation-bottom{grid-template-columns:repeat(5,minmax(0,1fr));}
+#input-credit-obligation .credit-obligation-row>div{min-width:0;}
+#input-credit-obligation .credit-obligation-row input,
+#input-credit-obligation .credit-obligation-row select{width:100%;}
+@media(max-width:1100px){
+  #input-credit-obligation .credit-obligation-top{grid-template-columns:repeat(2,minmax(0,1fr));}
+  #input-credit-obligation .credit-obligation-bottom{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media(max-width:760px){
+  #input-credit-obligation .credit-obligation-top,
+  #input-credit-obligation .credit-obligation-bottom{grid-template-columns:1fr;}
+}
+
+
+/* FINAL REVISION — Kredit & Kewajiban + Minimal Kewajiban + Dashboard KPI */
+/* Kredit & Kewajiban dibuat konsisten dengan panel Informasi Kontrak. */
+#input-credit-obligation > .panel{
+  padding:12px !important;
+  border:1px solid #dfe8e2 !important;
+  border-radius:12px !important;
+  background:#fff !important;
+  box-shadow:0 2px 10px rgba(23,60,41,.035) !important;
+}
+#input-credit-obligation .panel-head{
+  padding-bottom:0 !important;
+  margin-bottom:9px !important;
+}
+#input-credit-obligation .panel-head h3{
+  font-size:12px !important;
+  line-height:1.2 !important;
+  font-weight:800 !important;
+}
+#input-credit-obligation .credit-obligation-row{
+  gap:8px !important;
+  margin-bottom:8px !important;
+}
+#input-credit-obligation .credit-obligation-row:last-child{margin-bottom:0 !important;}
+#input-credit-obligation .credit-obligation-row > div{min-width:0 !important;}
+#input-credit-obligation label{
+  display:block !important;
+  margin-bottom:4px !important;
+  font-size:8px !important;
+  font-weight:700 !important;
+  color:#52625a !important;
+}
+#input-credit-obligation input,
+#input-credit-obligation select{
+  box-sizing:border-box !important;
+  width:100% !important;
+  height:34px !important;
+  padding:7px 9px !important;
+  border:1px solid #d8e2dc !important;
+  border-radius:8px !important;
+  background:#fbfdfc !important;
+  font-size:10px !important;
+}
+#input-credit-obligation input:focus,
+#input-credit-obligation select:focus{
+  border-color:#168a4a !important;
+  box-shadow:0 0 0 2px rgba(22,138,74,.08) !important;
+  outline:none !important;
+}
+#input-credit-obligation .value-display{
+  min-height:34px !important;
+  height:auto !important;
+  align-self:end !important;
+  box-sizing:border-box !important;
+  padding:7px 9px !important;
+  border:1px solid #cfe3d5 !important;
+  border-radius:8px !important;
+  background:#f1faf4 !important;
+}
+#input-credit-obligation .value-display span{font-size:7px !important;color:#668073 !important;}
+#input-credit-obligation .value-display strong{font-size:11px !important;color:#08713a !important;margin-top:2px !important;}
+
+/* Minimal Kewajiban: spacing compact, but still breathable. */
+#input-obligation > .panel{
+  padding:12px !important;
+}
+#input-obligation .auction-visual{
+  gap:9px !important;
+  row-gap:9px !important;
+  align-items:stretch !important;
+}
+#input-obligation .calc-stage,
+#input-obligation .calc-compare,
+#input-obligation .calc-discount,
+#input-obligation .final-result{
+  padding:11px !important;
+  border-radius:11px !important;
+}
+#input-obligation .calc-lines > div{padding:6px 0 !important;}
+#input-obligation .calc-connector{min-width:34px !important;}
+#input-obligation .calc-connector span{padding:4px 6px !important;font-size:8px !important;}
+
+/* Dashboard KPI — spacious cards, stable chart heights, no clipped labels. */
+#page-dashboard{
+  min-height:calc(100vh - 70px) !important;
+  height:auto !important;
+  overflow:visible !important;
+  padding-bottom:18px !important;
+}
+#page-dashboard .dashboard-layout{
+  display:grid !important;
+  grid-template-columns:minmax(0,1.55fr) minmax(330px,.82fr) !important;
+  gap:14px !important;
+  align-items:start !important;
+}
+#page-dashboard .dashboard-left,
+#page-dashboard .dashboard-right{min-width:0 !important;}
+#page-dashboard .dashboard-summary-grid{
+  gap:10px !important;
+  margin-bottom:12px !important;
+}
+#page-dashboard .dashboard-summary-grid .summary-box{
+  min-height:64px !important;
+  padding:11px 12px !important;
+  border-radius:12px !important;
+}
+#page-dashboard .dashboard-summary-grid .summary-box span{font-size:8px !important;}
+#page-dashboard .dashboard-summary-grid .summary-box strong{font-size:16px !important;margin-top:5px !important;}
+#page-dashboard .dashboard-charts{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:12px !important;
+  margin:0 !important;
+}
+#page-dashboard .dashboard-charts .panel,
+#page-dashboard .dashboard-indicator-charts .panel{
+  min-width:0 !important;
+  min-height:292px !important;
+  padding:11px !important;
+  margin:0 !important;
+  border:1px solid #dfe8e2 !important;
+  border-radius:13px !important;
+  background:#fff !important;
+  box-shadow:0 3px 14px rgba(23,60,41,.045) !important;
+  overflow:visible !important;
+}
+#page-dashboard .dashboard-charts .panel-head,
+#page-dashboard .dashboard-indicator-charts .panel-head{
+  min-height:28px !important;
+  margin:0 0 4px !important;
+  padding:0 !important;
+  display:flex !important;
+  align-items:center !important;
+}
+#page-dashboard .dashboard-charts .panel-head h3,
+#page-dashboard .dashboard-indicator-charts .panel-head h3{
+  font-size:10px !important;
+  line-height:1.25 !important;
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+#page-dashboard .dashboard-charts .chart,
+#page-dashboard .dashboard-indicator-charts .chart{
+  width:100% !important;
+  height:245px !important;
+  min-height:245px !important;
+  overflow:visible !important;
+}
+#page-dashboard .dashboard-section-head{
+  margin:0 0 9px !important;
+  padding:10px 11px !important;
+  border:1px solid #dfe8e2 !important;
+  border-radius:12px !important;
+  background:#fff !important;
+}
+#page-dashboard .dashboard-section-head h3{font-size:11px !important;line-height:1.2 !important;}
+#page-dashboard .dashboard-section-head p{font-size:8px !important;line-height:1.3 !important;margin-top:3px !important;}
+#page-dashboard .dashboard-indicator-grid{
+  gap:9px !important;
+  margin-bottom:11px !important;
+}
+#page-dashboard .dashboard-indicator-grid .summary-box{
+  min-height:67px !important;
+  padding:10px 11px !important;
+  border-radius:11px !important;
+}
+#page-dashboard .dashboard-indicator-grid .summary-box span{font-size:7.5px !important;line-height:1.25 !important;}
+#page-dashboard .dashboard-indicator-grid .summary-box strong{font-size:14px !important;margin-top:5px !important;}
+#page-dashboard .dashboard-indicator-charts{display:grid !important;grid-template-columns:1fr !important;gap:12px !important;}
+
+@media(max-width:1100px){
+  #page-dashboard .dashboard-layout{grid-template-columns:1fr !important;}
+  #page-dashboard .dashboard-indicator-charts{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+@media(max-width:760px){
+  #page-dashboard .dashboard-charts,
+  #page-dashboard .dashboard-indicator-charts{grid-template-columns:1fr !important;}
+  #page-dashboard .dashboard-charts .panel,
+  #page-dashboard .dashboard-indicator-charts .panel{min-height:285px !important;}
+}
+
+/* FINAL REVISION — compact uniform cards, monitoring branch filters, balanced KPI dashboard */
+#input-credit-obligation .credit-obligation-bottom{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
+#input-credit-obligation .credit-obligation-info{margin-top:7px;display:block;}
+#input-credit-obligation .credit-obligation-info .value-display{min-height:42px;padding:7px 12px!important;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#f5faf7;border:1px solid #cfe1d5;border-radius:9px;}
+#input-credit-obligation .credit-obligation-info .value-display span{font-size:10px!important;font-weight:800!important;color:#53635b;}
+#input-credit-obligation .credit-obligation-info .value-display strong{font-size:17px!important;color:var(--green);}
+#input-items .item-summary-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin-top:9px;}
+#input-items .item-summary-grid .summary-box{padding:7px 8px!important;border-radius:8px;min-width:0;}
+#input-items .item-summary-grid .summary-box span{font-size:7px!important;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#input-items .item-summary-grid .summary-box strong{font-size:12px!important;margin-top:4px;line-height:1.15;}
+.monitoring-filter-row{display:flex;align-items:center;gap:7px;min-width:0;}
+.monitoring-branch-filter{height:32px;min-width:170px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 9px;font-size:10px;font-weight:700;color:#415148;}
+.monitoring-filter-row .monitoring-search{flex:1;min-width:150px!important;width:auto!important;}
+
+/* Dashboard: equal 1:1 footprint; keep four core charts compact and the indicator/aging column equally sized. */
+#page-dashboard .dashboard-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:9px!important;align-items:start!important;}
+#page-dashboard .dashboard-charts{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important;}
+#page-dashboard .dashboard-charts .panel,#page-dashboard .dashboard-indicator-charts .panel{padding:6px!important;border-radius:8px!important;box-shadow:none!important;}
+#page-dashboard .dashboard-charts .chart{height:135px!important;min-height:135px!important;}
+#page-dashboard .dashboard-indicator-charts{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important;}
+#page-dashboard .dashboard-indicator-charts .chart{height:135px!important;min-height:135px!important;}
+#page-dashboard .dashboard-indicator-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box{padding:7px 7px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box span{font-size:7px!important;line-height:1.15;}
+#page-dashboard .dashboard-indicator-grid .summary-box strong{font-size:12px!important;margin-top:4px!important;}
+#page-dashboard .dashboard-section-head{padding:6px 8px!important;margin-bottom:6px!important;}
+#page-dashboard .dashboard-section-head h3{font-size:10px!important;}
+#page-dashboard .dashboard-section-head p{font-size:7px!important;}
+@media(max-width:1200px){#input-items .item-summary-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.monitoring-filter-row{flex-wrap:wrap;}.monitoring-branch-filter{min-width:145px;}#page-dashboard .dashboard-indicator-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}}
+@media(max-width:900px){#input-credit-obligation .credit-obligation-bottom{grid-template-columns:repeat(2,minmax(0,1fr))!important;}#page-dashboard .dashboard-indicator-charts{grid-template-columns:1fr!important;}}
+@media(max-width:560px){#input-items .item-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+/* V21 — final clean-up: item vs taksir summaries + calm dashboard */
+#input-items .item-only-summary{grid-template-columns:repeat(2,minmax(0,180px))!important;gap:8px!important;margin-top:9px!important;}
+#input-items .item-only-summary .summary-box{padding:8px 10px!important;border-radius:8px!important;}
+#input-items .item-only-summary .summary-box span{font-size:8px!important;}
+#input-items .item-only-summary .summary-box strong{font-size:13px!important;margin-top:4px!important;}
+#input-items .taksir-summary-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px;}
+#input-items .taksir-summary-grid .summary-box{padding:9px 10px!important;border-radius:8px!important;min-width:0;}
+#input-items .taksir-summary-grid .summary-box span{font-size:8px!important;line-height:1.15;}
+#input-items .taksir-summary-grid .summary-box strong{font-size:13px!important;margin-top:4px;line-height:1.15;}
+
+#page-dashboard .dashboard-layout-clean{display:block!important;}
+#page-dashboard .dashboard-left{width:100%;}
+#page-dashboard .dashboard-summary-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px;}
+#page-dashboard .dashboard-summary-grid .summary-box{padding:11px 12px;border-radius:9px;}
+#page-dashboard .dashboard-summary-grid .summary-box span{font-size:9px;}
+#page-dashboard .dashboard-summary-grid .summary-box strong{font-size:16px;margin-top:5px;}
+#page-dashboard .dashboard-charts{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin:0!important;}
+#page-dashboard .dashboard-charts .panel{padding:10px!important;border-radius:9px!important;box-shadow:none!important;}
+#page-dashboard .dashboard-charts .panel-head{margin-bottom:6px!important;}
+#page-dashboard .dashboard-charts .panel-head h3{font-size:11px!important;line-height:1.2!important;}
+#page-dashboard .dashboard-charts .chart{height:190px!important;min-height:190px!important;}
+#page-dashboard .dashboard-aging-section{margin-top:14px;padding-top:12px;border-top:1px solid #e5ebe7;}
+#page-dashboard .dashboard-section-head{padding:0!important;border:0!important;background:transparent!important;margin:0 0 8px!important;}
+#page-dashboard .dashboard-section-head h3{font-size:13px!important;}
+#page-dashboard .dashboard-section-head p{font-size:9px!important;margin-top:3px!important;}
+#page-dashboard .dashboard-indicator-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:9px!important;margin-bottom:10px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box{padding:9px 10px!important;min-height:0!important;border-radius:9px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box span{font-size:8px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box strong{font-size:14px!important;margin-top:4px!important;}
+#page-dashboard .dashboard-indicator-charts{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;}
+#page-dashboard .dashboard-indicator-charts .panel{padding:10px!important;border-radius:9px!important;box-shadow:none!important;}
+#page-dashboard .dashboard-indicator-charts .panel-head{margin-bottom:6px!important;}
+#page-dashboard .dashboard-indicator-charts .panel-head h3{font-size:10px!important;}
+#page-dashboard .dashboard-indicator-charts .chart{height:155px!important;min-height:155px!important;}
+@media(max-width:900px){#page-dashboard .dashboard-summary-grid,#page-dashboard .dashboard-indicator-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}#page-dashboard .dashboard-charts,#page-dashboard .dashboard-indicator-charts{grid-template-columns:1fr!important;}#input-items .taksir-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:560px){#page-dashboard .dashboard-summary-grid,#page-dashboard .dashboard-indicator-grid{grid-template-columns:1fr!important;}#input-items .item-only-summary{grid-template-columns:1fr!important;}#input-items .taksir-summary-grid{grid-template-columns:1fr!important;}}
+
+/* V16 refinements */
+#input-credit-obligation .credit-obligation-info{width:33.333%!important;max-width:33.333%!important;}
+#input-credit-obligation .credit-obligation-info .value-display{min-height:34px!important;padding:5px 8px!important;gap:8px!important;}
+#input-credit-obligation .credit-obligation-info .value-display span{font-size:8px!important;}
+#input-credit-obligation .credit-obligation-info .value-display strong{font-size:12px!important;}
+
+#input-items .item-only-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;}
+#input-items .item-only-summary .summary-box{padding:10px 12px!important;min-height:52px!important;}
+#input-items .item-only-summary .summary-box span{font-size:9px!important;}
+#input-items .item-only-summary .summary-box strong{font-size:15px!important;}
+
+/* Dashboard V16: dense, balanced, single-screen desktop layout */
+#page-dashboard{padding-bottom:8px!important;overflow:hidden!important;}
+#page-dashboard .dashboard-filter{padding:5px 8px!important;margin:4px 0 6px!important;}
+#page-dashboard .dashboard-filter .form-grid{gap:0!important;}
+#page-dashboard .dashboard-filter label{font-size:8px!important;margin-bottom:2px!important;}
+#page-dashboard .dashboard-filter select{height:30px!important;font-size:9px!important;}
+#page-dashboard .dashboard-layout-clean{display:block!important;}
+#page-dashboard .dashboard-left{width:100%!important;}
+#page-dashboard .dashboard-summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;margin:0 0 6px!important;}
+#page-dashboard .dashboard-summary-grid .summary-box{padding:6px 8px!important;min-height:43px!important;border-radius:7px!important;}
+#page-dashboard .dashboard-summary-grid .summary-box span{font-size:7px!important;line-height:1.05!important;}
+#page-dashboard .dashboard-summary-grid .summary-box strong{font-size:12px!important;margin-top:3px!important;line-height:1.05!important;}
+#page-dashboard .dashboard-aging-section{margin:6px 0 0!important;padding:0!important;border:0!important;}
+#page-dashboard .dashboard-section-head{padding:3px 5px!important;margin:0 0 4px!important;background:#f5f8f6!important;border-radius:5px!important;}
+#page-dashboard .dashboard-section-head h3{font-size:8px!important;line-height:1!important;}
+#page-dashboard .dashboard-section-head p{font-size:6px!important;line-height:1!important;margin:2px 0 0!important;}
+#page-dashboard .dashboard-indicator-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important;margin:0 0 5px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box{padding:5px 6px!important;min-height:36px!important;border-radius:6px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box span{font-size:6px!important;line-height:1.05!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box strong{font-size:10px!important;margin-top:2px!important;line-height:1!important;}
+#page-dashboard .dashboard-charts,
+#page-dashboard .dashboard-indicator-charts{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;margin:0!important;}
+#page-dashboard .dashboard-charts .panel,
+#page-dashboard .dashboard-indicator-charts .panel{padding:5px!important;border-radius:6px!important;box-shadow:none!important;min-width:0!important;}
+#page-dashboard .dashboard-charts .panel-head,
+#page-dashboard .dashboard-indicator-charts .panel-head{margin-bottom:3px!important;min-height:18px!important;}
+#page-dashboard .dashboard-charts .panel-head h3,
+#page-dashboard .dashboard-indicator-charts .panel-head h3{font-size:7px!important;line-height:1.05!important;}
+#page-dashboard .dashboard-charts .chart,
+#page-dashboard .dashboard-indicator-charts .chart{height:145px!important;min-height:145px!important;}
+#page-dashboard .dashboard-charts{margin-bottom:6px!important;}
+#page-dashboard .dashboard-indicator-charts{margin-bottom:0!important;}
+
+@media(max-width:1200px){
+  #page-dashboard .dashboard-charts,#page-dashboard .dashboard-indicator-charts{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+}
+@media(max-width:900px){
+  #input-credit-obligation .credit-obligation-info{width:100%!important;max-width:100%!important;}
+  #page-dashboard{overflow:auto!important;}
+  #page-dashboard .dashboard-charts,#page-dashboard .dashboard-indicator-charts{grid-template-columns:1fr!important;}
+}
+
+
+/* V17 — requested 2:1 dashboard hierarchy and compact full-screen fit */
+#input-credit-obligation .credit-obligation-info .value-display{justify-content:flex-start!important;text-align:left!important;}
+#input-credit-obligation .credit-obligation-info .value-display span{margin-right:10px;}
+#input-items .item-only-summary{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;max-width:none!important;width:100%!important;}
+#page-dashboard .dashboard-layout-clean{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(0,1fr)!important;gap:10px!important;align-items:start!important;}
+#page-dashboard .dashboard-left{min-width:0;width:auto!important;}
+#page-dashboard .dashboard-filter{margin:0 0 8px!important;padding:7px 9px!important;}
+#page-dashboard .dashboard-filter .form-grid{max-width:none!important;margin:0!important;}
+#page-dashboard .dashboard-filter label{font-size:8px!important;margin-bottom:3px!important;}
+#page-dashboard .dashboard-filter select{height:27px!important;font-size:9px!important;}
+#page-dashboard .dashboard-summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;margin-bottom:7px!important;}
+#page-dashboard .dashboard-summary-grid .summary-box{padding:7px 8px!important;border-radius:7px!important;}
+#page-dashboard .dashboard-summary-grid .summary-box span{font-size:7px!important;line-height:1.1!important;}
+#page-dashboard .dashboard-summary-grid .summary-box strong{font-size:12px!important;margin-top:3px!important;}
+#page-dashboard .dashboard-charts{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important;margin:0!important;}
+#page-dashboard .dashboard-charts .panel,#page-dashboard .dashboard-indicator-charts .panel{padding:6px!important;margin-top:0!important;border-radius:7px!important;box-shadow:none!important;}
+#page-dashboard .dashboard-charts .panel-head,#page-dashboard .dashboard-indicator-charts .panel-head{margin-bottom:2px!important;}
+#page-dashboard .dashboard-charts .panel-head h3,#page-dashboard .dashboard-indicator-charts .panel-head h3{font-size:7px!important;line-height:1.1!important;}
+#page-dashboard .dashboard-charts .chart{height:105px!important;min-height:105px!important;}
+#page-dashboard .dashboard-aging-section{margin:0!important;padding:0!important;border:0!important;min-width:0;}
+#page-dashboard .dashboard-section-head{padding:7px 8px!important;margin:0 0 6px!important;border:1px solid #e5ebe7!important;border-radius:7px!important;background:#fff!important;}
+#page-dashboard .dashboard-section-head h3{font-size:9px!important;line-height:1.1!important;}
+#page-dashboard .dashboard-section-head p{font-size:6.5px!important;line-height:1.2!important;margin-top:2px!important;}
+#page-dashboard .dashboard-indicator-grid{grid-template-columns:1fr!important;gap:5px!important;margin-bottom:7px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box{padding:7px 8px!important;border-radius:7px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box span{font-size:7px!important;line-height:1.1!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box strong{font-size:12px!important;margin-top:3px!important;}
+#page-dashboard .dashboard-indicator-grid .dashboard-diskon-count-hidden{display:none!important;}
+#page-dashboard .dashboard-indicator-charts{grid-template-columns:1fr!important;gap:7px!important;}
+#page-dashboard .dashboard-indicator-charts .chart{height:105px!important;min-height:105px!important;}
+#page-dashboard .dashboard-charts .chart svg text,#page-dashboard .dashboard-indicator-charts .chart svg text{font-size:8px!important;}
+@media(max-width:1100px){#page-dashboard .dashboard-layout-clean{grid-template-columns:1fr!important;}#page-dashboard .dashboard-indicator-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;}#page-dashboard .dashboard-indicator-charts{grid-template-columns:repeat(2,minmax(0,1fr))!important;}}
+@media(max-width:760px){#page-dashboard .dashboard-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}#page-dashboard .dashboard-charts,#page-dashboard .dashboard-indicator-charts{grid-template-columns:1fr!important;}#page-dashboard .dashboard-indicator-grid{grid-template-columns:1fr 1fr!important;}}
+
+/* V18 — final dashboard polish: left-aligned obligation info, 3 KPI metrics, smaller stable charts */
+#input-credit-obligation .credit-obligation-info .value-display{
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+  text-align:left!important;
+}
+#input-credit-obligation .credit-obligation-info .value-display span,
+#input-credit-obligation .credit-obligation-info .value-display strong{
+  text-align:left!important;
+  align-self:flex-start!important;
+  margin-left:0!important;
+}
+#input-credit-obligation .credit-obligation-info .value-display span{margin-right:0!important;}
+
+#page-dashboard .dashboard-charts .chart,
+#page-dashboard .dashboard-indicator-charts .chart{
+  height:96px!important;
+  min-height:96px!important;
+  max-height:96px!important;
+}
+#page-dashboard .dashboard-charts .panel,
+#page-dashboard .dashboard-indicator-charts .panel{
+  padding:5px!important;
+}
+#page-dashboard .dashboard-charts .panel-head h3,
+#page-dashboard .dashboard-indicator-charts .panel-head h3{
+  font-size:6.5px!important;
+}
+#page-dashboard .dashboard-charts .chart svg text,
+#page-dashboard .dashboard-indicator-charts .chart svg text{
+  font-size:7px!important;
+}
+
+#page-dashboard .dashboard-indicator-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:5px!important;
+  margin-bottom:6px!important;
+}
+#page-dashboard .dashboard-indicator-grid .summary-box{
+  padding:6px 7px!important;
+  min-width:0!important;
+}
+#page-dashboard .dashboard-indicator-grid .summary-box span{font-size:6.5px!important;}
+#page-dashboard .dashboard-indicator-grid .summary-box strong{font-size:11px!important;}
+#page-dashboard .dashboard-indicator-charts{
+  grid-template-columns:1fr!important;
+  gap:6px!important;
+}
+
+@media(max-width:1100px){
+  #page-dashboard .dashboard-layout-clean{grid-template-columns:1fr!important;}
+  #page-dashboard .dashboard-indicator-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+  #page-dashboard .dashboard-indicator-charts{grid-template-columns:1fr!important;}
+}
+@media(max-width:760px){
+  #page-dashboard .dashboard-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  #page-dashboard .dashboard-charts,#page-dashboard .dashboard-indicator-charts{grid-template-columns:1fr!important;}
+  #page-dashboard .dashboard-indicator-grid{grid-template-columns:1fr 1fr!important;}
+}
+
+
+/* Dashboard KPI: fixed 1.8 x 1.8 chart viewport + stable Plotly sizing */
+#page-dashboard .dashboard-charts .chart,
+#page-dashboard .dashboard-indicator-charts .chart{
+  width:180px!important;
+  height:180px!important;
+  min-width:180px!important;
+  min-height:180px!important;
+  max-width:180px!important;
+  max-height:180px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+#page-dashboard .dashboard-charts,
+#page-dashboard .dashboard-indicator-charts{
+  align-items:start!important;
+}
+#page-dashboard .dashboard-charts .chart-panel,
+#page-dashboard .dashboard-indicator-charts .chart-panel{
+  min-width:0!important;
+}
+
+/* V19 — final Dashboard KPI sizing refinement */
+/* Six chart cards: slightly shorter, with a chart that fits comfortably inside the white card. */
+#page-dashboard .dashboard-charts .panel,
+#page-dashboard .dashboard-indicator-charts .panel{
+  padding:7px!important;
+  min-height:184px!important;
+  box-sizing:border-box!important;
+}
+#page-dashboard .dashboard-charts .chart,
+#page-dashboard .dashboard-indicator-charts .chart{
+  width:170px!important;
+  height:170px!important;
+  min-width:170px!important;
+  min-height:170px!important;
+  max-width:170px!important;
+  max-height:170px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+/* Keep Plotly text readable inside the reduced chart viewport. */
+#page-dashboard .dashboard-charts .chart svg text,
+#page-dashboard .dashboard-indicator-charts .chart svg text{
+  font-size:8px!important;
+}
+
+/* Indicator title box = Filter Cabang height. */
+#page-dashboard .dashboard-section-head{
+  min-height:45px!important;
+  height:45px!important;
+  box-sizing:border-box!important;
+  padding:7px 9px!important;
+  margin:0 0 7px!important;
+  display:flex!important;
+  align-items:center!important;
+}
+#page-dashboard .dashboard-section-head h3{font-size:9px!important;line-height:1.1!important;margin:0!important;}
+#page-dashboard .dashboard-section-head p{font-size:6.5px!important;line-height:1.15!important;margin:2px 0 0!important;}
+
+/* Indicator KPI cards = same height as Total Kewajiban / Kontrak / Nasabah / Outlet. */
+#page-dashboard .dashboard-indicator-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:6px!important;
+  margin-bottom:7px!important;
+}
+#page-dashboard .dashboard-indicator-grid .summary-box{
+  min-height:43px!important;
+  height:43px!important;
+  box-sizing:border-box!important;
+  padding:7px 8px!important;
+  border-radius:7px!important;
+}
+#page-dashboard .dashboard-indicator-grid .summary-box span{
+  font-size:7px!important;
+  line-height:1.1!important;
+}
+#page-dashboard .dashboard-indicator-grid .summary-box strong{
+  font-size:12px!important;
+  line-height:1.05!important;
+  margin-top:3px!important;
+}
+
+/* Make the top KPI cards equally compact. */
+#page-dashboard .dashboard-summary-grid .summary-box{
+  min-height:43px!important;
+  height:43px!important;
+  box-sizing:border-box!important;
+}
+
+@media(max-width:1100px){
+  #page-dashboard .dashboard-indicator-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+}
+@media(max-width:760px){
+  #page-dashboard .dashboard-indicator-grid{grid-template-columns:1fr 1fr!important;}
+}
+
+
+/* V21 — Dashboard KPI final responsive sizing / no center-packed charts */
+#page-dashboard .dashboard-filter,
+#page-dashboard .dashboard-section-head{
+  height:53px!important;
+  min-height:53px!important;
+  max-height:53px!important;
+  box-sizing:border-box!important;
+}
+#page-dashboard .dashboard-filter{
+  padding:7px 9px!important;
+  margin:0 0 7px!important;
+}
+#page-dashboard .dashboard-filter label{font-size:8px!important;line-height:1.05!important;margin-bottom:3px!important;}
+#page-dashboard .dashboard-filter select{height:27px!important;font-size:9px!important;}
+#page-dashboard .dashboard-section-head{
+  padding:7px 9px!important;
+  margin:0 0 7px!important;
+  display:flex!important;
+  align-items:center!important;
+}
+#page-dashboard .dashboard-section-head h3{font-size:9px!important;line-height:1.05!important;margin:0!important;}
+#page-dashboard .dashboard-section-head p{font-size:6.5px!important;line-height:1.1!important;margin:2px 0 0!important;}
+
+/* Keep the KPI cards compact and identical in height. */
+#page-dashboard .dashboard-summary-grid .summary-box,
+#page-dashboard .dashboard-indicator-grid .summary-box{
+  height:43px!important;
+  min-height:43px!important;
+  box-sizing:border-box!important;
+}
+
+/* The white chart cards use their available width; charts are intentionally
+   a little smaller than the card, not a fixed 170px box centered in it. */
+#page-dashboard .dashboard-charts .panel,
+#page-dashboard .dashboard-indicator-charts .panel{
+  min-height:176px!important;
+  height:176px!important;
+  padding:6px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+#page-dashboard .dashboard-charts .panel-head,
+#page-dashboard .dashboard-indicator-charts .panel-head{
+  min-height:16px!important;
+  height:16px!important;
+  margin:0 0 3px!important;
+}
+#page-dashboard .dashboard-charts .panel-head h3,
+#page-dashboard .dashboard-indicator-charts .panel-head h3{
+  font-size:7px!important;
+  line-height:1.05!important;
+}
+#page-dashboard .dashboard-charts .chart,
+#page-dashboard .dashboard-indicator-charts .chart{
+  display:block!important;
+  width:calc(100% - 10px)!important;
+  height:155px!important;
+  min-width:0!important;
+  min-height:155px!important;
+  max-width:none!important;
+  max-height:155px!important;
+  margin:0 auto!important;
+  box-sizing:border-box!important;
+}
+#page-dashboard .dashboard-charts .chart svg text,
+#page-dashboard .dashboard-indicator-charts .chart svg text{font-size:8px!important;}
+#page-dashboard .dashboard-charts,
+#page-dashboard .dashboard-indicator-charts{align-items:stretch!important;}
+
+/* V22 — Dashboard KPI final layout */
+#page-dashboard .dashboard-layout-clean{display:block!important;width:100%!important;}
+#page-dashboard .dashboard-left{width:100%!important;min-width:0!important;}
+#page-dashboard .dashboard-aging-section{display:none!important;}
+#page-dashboard .dashboard-filter{width:100%!important;box-sizing:border-box!important;margin:0 0 8px!important;}
+#page-dashboard .dashboard-summary-grid-seven{
+  display:grid!important;
+  grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  gap:6px!important;
+  width:100%!important;
+  margin-bottom:8px!important;
+}
+#page-dashboard .dashboard-summary-grid-seven .summary-box{
+  min-width:0!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+  padding:7px 7px!important;
+  overflow:hidden!important;
+}
+#page-dashboard .dashboard-summary-grid-seven .summary-box span{
+  font-size:7px!important;line-height:1.1!important;white-space:nowrap!important;
+}
+#page-dashboard .dashboard-summary-grid-seven .summary-box strong{
+  display:block!important;width:100%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important;
+  font-size:12px!important;line-height:1.1!important;margin-top:3px!important;
+}
+#page-dashboard .dashboard-charts{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+  width:100%!important;
+  align-items:stretch!important;
+}
+#page-dashboard .dashboard-charts .panel{
+  min-width:0!important;width:100%!important;height:190px!important;min-height:190px!important;
+  box-sizing:border-box!important;padding:6px!important;overflow:hidden!important;
+}
+#page-dashboard .dashboard-charts .panel-head{height:17px!important;min-height:17px!important;margin:0 0 3px!important;}
+#page-dashboard .dashboard-charts .panel-head h3{font-size:7px!important;line-height:1.05!important;margin:0!important;}
+#page-dashboard .dashboard-charts .chart{
+  width:100%!important;height:164px!important;min-width:0!important;min-height:164px!important;max-width:none!important;max-height:none!important;
+  margin:0 auto!important;box-sizing:border-box!important;
+}
+@media(max-width:1200px){
+  #page-dashboard .dashboard-summary-grid-seven{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
+}
+@media(max-width:760px){
+  #page-dashboard .dashboard-summary-grid-seven{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  #page-dashboard .dashboard-charts{grid-template-columns:1fr!important;}
+}
+.login-screen{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#eef3ef;padding:28px}.login-shell{width:min(980px,100%);min-height:600px;display:grid;grid-template-columns:1fr 1fr;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 28px 80px rgba(24,62,38,.16)}.login-brand-panel{padding:58px 54px;background:linear-gradient(145deg,#063b20,#08713a);color:#fff;display:flex;flex-direction:column;justify-content:center}.login-logo{width:88px;height:88px;object-fit:contain;background:#fff;border-radius:20px;padding:13px;margin-bottom:34px}.login-brand-kicker,.login-eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em}.login-brand-kicker{opacity:.7}.login-brand-panel h1{font-size:38px;margin:10px 0 18px}.login-brand-panel p{line-height:1.7;color:#dce9e0}.login-brand-meta{margin-top:38px;font-size:12px}.login-form-panel{padding:58px;display:flex;flex-direction:column;justify-content:center}.login-eyebrow{color:#13833f}.login-heading h2{font-size:30px;margin:8px 0}.login-heading p{color:#7b877f;font-size:13px}.login-label{display:block;font-size:12px;font-weight:800;margin:20px 0 8px}.login-field{height:52px;border:1px solid #dce5df;border-radius:13px;display:flex;align-items:center;padding:0 14px;gap:10px;color:#8a968f}.login-field input{border:0;outline:0;flex:1;font:inherit}.login-field button{border:0;background:transparent;cursor:pointer}.login-error{min-height:18px;color:#bd3d3d;font-size:12px;margin:10px 0}.login-submit{height:54px;border:0;border-radius:13px;background:#0b6835;color:#fff;width:100%;display:flex;justify-content:space-between;align-items:center;padding:0 20px;font-weight:800;cursor:pointer}.login-submit:disabled{opacity:.65}.login-note{margin-top:22px;padding-top:18px;border-top:1px solid #edf1ee;color:#87918b;font-size:11px}.side-user-card{padding:13px;border:1px solid #e5eae6;border-radius:15px;background:#fff}.side-user-main{display:flex;align-items:center;gap:10px}.side-user-avatar{width:34px;height:34px;border-radius:10px;background:#0b6835;color:#fff;display:grid;place-items:center;font-size:10px;font-weight:800}.side-user-copy{min-width:0;flex:1}.side-user-copy b,.side-user-copy small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.side-user-copy b{font-size:11px}.side-user-copy small{font-size:8px;color:#8b958e;margin-top:3px}.side-online{width:7px;height:7px;border-radius:50%;background:#1a9a50}.logout-btn{width:100%;height:36px;margin-top:11px;border:1px solid #e5eae6;background:#fff;border-radius:10px;display:flex;align-items:center;gap:9px;color:#59645e;cursor:pointer;font-size:10px}.logout-btn:hover{background:#fff8f8;color:#a33b3b}@media(max-width:760px){.login-shell{grid-template-columns:1fr;min-height:auto}.login-brand-panel{padding:34px}.login-brand-panel p,.login-brand-meta{display:none}.login-form-panel{padding:34px}}
+
+/* Import role controls + branch/outlet filters */
+.hidden-by-role{display:none!important}
+.import-user-note{margin-top:8px;padding:9px 12px;border:1px solid #e4e9e6;border-radius:8px;background:#f7f9f8;color:#65736d;font-size:11px}
+.btn-danger{background:#b42318!important;color:#fff!important;border:1px solid #b42318!important}
+#import-preview .preview-searchbar{display:grid;grid-template-columns:1.15fr 1fr 1fr 1.15fr;gap:7px}
+#import-preview .preview-searchbar input,
+#import-preview .preview-searchbar select{height:31px;border:1px solid #ccd6d0;border-radius:7px;padding:0 8px;font-size:10px;background:#fff;min-width:0}
+
+/* V9: per-file import management + clear clickable filters */
+.import-batches-panel{margin-top:14px;padding:12px 14px;border:1px solid #dfe8e2;border-radius:14px;background:#fbfdfc}
+.import-batches-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.import-batches-head b{display:block;font-size:11px;color:#173c29}.import-batches-head span{display:block;margin-top:3px;font-size:9px;color:#7b8881}
+.import-batches-list{display:flex;flex-direction:column;gap:7px}.import-batch-card{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;background:#fff;border:1px solid #e3ebe6;border-radius:10px}
+.import-batch-info{min-width:0}.import-batch-info strong{display:block;font-size:10px;color:#263d31;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.import-batch-info span{display:block;margin-top:3px;font-size:8px;color:#87928c}
+.batch-delete-btn{width:27px;height:27px;border:0;border-radius:8px;background:#fff0ef;color:#b42318;font-size:20px;line-height:1;cursor:pointer;flex:0 0 auto}.batch-delete-btn:hover{background:#b42318;color:#fff}
+.empty-batches{padding:11px;border:1px dashed #d7e1db;border-radius:9px;text-align:center;color:#89948e;font-size:9px}
+.import-scope-panel{margin-top:14px}.import-filter-row{display:flex;gap:8px;align-items:center}.import-filter-row select{height:34px;min-width:190px;padding:0 10px;border:1px solid #cbd7d0;border-radius:8px;background:#fff;color:#243a2f;font-size:11px;cursor:pointer;outline:none}.import-filter-row select:focus{border-color:#0b7a40;box-shadow:0 0 0 2px rgba(11,122,64,.10)}
+#import-preview .preview-searchbar select{cursor:pointer}.import-scope-panel .panel-head{align-items:center}
+@media(max-width:900px){.import-filter-row{width:100%}.import-filter-row select{flex:1;min-width:0}.import-scope-panel .panel-head{flex-direction:column;align-items:stretch}}
+
+/* FINAL import UX */
+#import-preview .preview-searchbar{display:grid;grid-template-columns:1fr 1fr 1.15fr 1.15fr auto;gap:10px;align-items:end;margin-top:4px;padding:12px;background:#f7faf8;border:1px solid #e1e9e4;border-radius:12px}
+.filter-field{display:flex;flex-direction:column;gap:5px;min-width:0}.filter-field label{font-size:10px;font-weight:800;color:#53645b}.filter-field input,.filter-field select{height:36px;border:1px solid #cbd7d0;border-radius:8px;padding:0 10px;background:#fff;color:#243a2f;font-size:11px;outline:none;width:100%;box-sizing:border-box}.filter-field input:focus,.filter-field select:focus{border-color:#0b7a40;box-shadow:0 0 0 2px rgba(11,122,64,.10)}
+.import-filter-row-large{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}.filter-reset{height:36px;white-space:nowrap}.btn-secondary{background:#fff!important;color:#42554b!important;border:1px solid #cbd7d0!important}.btn-secondary:hover{background:#f3f7f4!important}
+.import-batches-table-wrap{overflow:auto;border:1px solid #e2e9e4;border-radius:10px;background:#fff}.import-batches-table{width:100%;border-collapse:collapse;min-width:620px}.import-batches-table th{background:#f4f8f5;color:#53645b;font-size:9px;text-transform:uppercase;letter-spacing:.04em;text-align:left;padding:9px 11px;border-bottom:1px solid #e1e8e3}.import-batches-table td{padding:10px 11px;border-bottom:1px solid #edf1ee;font-size:10px;color:#34483d}.import-batches-table tbody tr:last-child td{border-bottom:0}.import-batches-table td:nth-child(2),.import-batches-table td:nth-child(3),.import-batches-table th:nth-child(2),.import-batches-table th:nth-child(3){white-space:nowrap}.import-batches-table td:last-child,.import-batches-table th:last-child{text-align:center;width:70px}.readonly-action{color:#a0aaa5;font-size:12px}.empty-batches{padding:18px!important;text-align:center!important;color:#89948e!important;font-size:10px!important}
+#import-preview .preview-searchbar .filter-reset{width:auto}
+@media(max-width:900px){#import-preview .preview-searchbar{grid-template-columns:1fr 1fr}.import-filter-row-large{grid-template-columns:1fr 1fr}.filter-reset{grid-column:1/-1}}
+@media(max-width:600px){#import-preview .preview-searchbar,.import-filter-row-large{grid-template-columns:1fr}.filter-reset{grid-column:auto}}
+
+/* Import & Preview filters aligned with the Contracts section */
+.import-filter-form{grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}
+.import-filter-form .filter-action{display:flex;flex-direction:column;justify-content:flex-end}
+.import-filter-form .filter-action .btn{height:35px;width:100%}
+.preview-head{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important}
+.preview-filter-form{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:10px}
+.preview-filter-form input,.preview-filter-form select{width:100%;height:35px;box-sizing:border-box}
+.preview-filter-form .table-search{min-width:0}
+#import-preview .preview-searchbar{display:grid!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;margin-top:0!important}
+@media(max-width:1100px){.import-filter-form,.preview-filter-form{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.import-filter-form,.preview-filter-form{grid-template-columns:1fr}.preview-head{align-items:flex-start!important;gap:8px}}
+
+
+/* Preview Data — final spacing cleanup */
+#import-preview .preview-filter-form{
+  display:grid!important;
+  grid-template-columns:1.15fr 1fr 1fr 1.15fr!important;
+  gap:14px!important;
+  margin:0 0 22px!important;
+  padding:0!important;
+  align-items:end!important;
+}
+#import-preview .preview-filter-form > div{min-width:0;}
+#import-preview .preview-filter-form label{margin-bottom:7px!important;font-size:11px!important;}
+#import-preview .preview-filter-form input,
+#import-preview .preview-filter-form select{
+  height:40px!important;
+  min-width:0!important;
+  font-size:12px!important;
+  border-radius:8px!important;
+}
+#import-preview .table-wrap{margin-top:0!important;}
+@media(max-width:1100px){#import-preview .preview-filter-form{grid-template-columns:repeat(2,minmax(0,1fr))!important;}}
+@media(max-width:760px){#import-preview .preview-filter-form{grid-template-columns:1fr!important;gap:11px!important;margin-bottom:18px!important;}}
+
+/* Preview Data — breathing room between filters and table */
+#import-preview .preview-filter-form{
+  margin-bottom:26px!important;
+  padding-bottom:2px!important;
+}
+#import-preview .preview-filter-form + .table-wrap{
+  margin-top:0!important;
+}
+#import-preview .preview-head{
+  margin-bottom:18px!important;
+}
+
+/* FINAL PREVIEW SPACING + IMPORT KPI CONTRACT COUNTS */
+#import-preview .preview-filter-form{
+  margin-bottom:30px!important;
+  padding-bottom:0!important;
+  gap:10px 12px!important;
+}
+#import-preview .preview-filter-form>div{min-width:0!important;}
+#import-preview .preview-filter-form label{display:block!important;margin-bottom:7px!important;}
+#import-preview .preview-filter-form input,#import-preview .preview-filter-form select{width:100%!important;height:40px!important;}
+#import-preview .table-wrap{margin-top:0!important;}
+#import-preview .panel-head.preview-head{margin-bottom:16px!important;}
+
+
+/* Preview Data — clear separation between filters and data table */
+#import-preview .preview-filter-form{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  column-gap:16px!important;
+  row-gap:12px!important;
+  margin:0 0 24px!important;
+  padding:0!important;
+  align-items:end!important;
+}
+#import-preview .preview-filter-form>div{
+  min-width:0!important;
+}
+#import-preview .preview-filter-form input,
+#import-preview .preview-filter-form select{
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+#import-preview .preview-filter-form + .table-wrap{
+  margin-top:8px!important;
+}
+#import-preview .table-wrap{
+  clear:both!important;
+}
+@media(max-width:1100px){
+  #import-preview .preview-filter-form{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    column-gap:14px!important;
+    row-gap:14px!important;
+    margin-bottom:22px!important;
+  }
+}
+@media(max-width:760px){
+  #import-preview .preview-filter-form{
+    grid-template-columns:1fr!important;
+    gap:11px!important;
+    margin-bottom:18px!important;
+  }
+}
+
+/* FINAL: Preview filter/table separation */
+#import-preview .preview-filter-form{
+  margin-bottom:32px!important;
+  padding-bottom:0!important;
+  column-gap:16px!important;
+  row-gap:14px!important;
+}
+#import-preview .preview-filter-form + .table-wrap{
+  margin-top:12px!important;
+  padding-top:0!important;
+}
+#import-preview .preview-filter-form + .table-wrap table{
+  margin-top:0!important;
+}
