@@ -1,15 +1,22 @@
 FROM php:8.2-apache
 
-# Enable Apache rewrite
+# Pastikan hanya MPM prefork yang aktif
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
+    && a2dismod mpm_prefork 2>/dev/null || true \
+    && rm -f /etc/apache2/mods-enabled/mpm_event.* \
+              /etc/apache2/mods-enabled/mpm_worker.* \
+    && a2enmod mpm_prefork
+
+# Apache rewrite
 RUN a2enmod rewrite
 
-# Install PHP extensions for MySQL
+# PHP extensions untuk MySQL
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Copy application files to Apache web root
+# Copy aplikasi
 COPY . /var/www/html/
 
-# Set permissions
+# Permission
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
