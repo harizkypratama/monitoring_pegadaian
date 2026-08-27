@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitoring Gadai — Area Senen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+<div id="toast-container"></div>
+
+<section id="splash-screen" class="splash-screen">
+  <div class="splash-inner">
+    <img id="splash-logo" class="splash-logo" src="assets/pegadaian.png" alt="Logo Pegadaian">
+    <div class="splash-kicker">SISTEM INFORMASI</div>
+    <h1>MONITORING PEGADAIAN</h1>
+    <p>Monitoring Cabang &amp; Outlet • Area Senen</p>
+    <div class="splash-line"></div>
+  </div>
+</section>
+
+<section id="login-screen" class="login-screen hidden"><div class="login-shell"><div class="login-brand-panel"><img src="assets/pegadaian.png" class="login-logo"><div class="login-brand-kicker">SISTEM INFORMASI</div><h1>Monitoring Pegadaian</h1><p>Monitoring kontrak, kewajiban, lelang, dan kinerja outlet secara terintegrasi.</p><div class="login-brand-meta">● Area Senen</div></div><div class="login-form-panel"><div class="login-heading"><span class="login-eyebrow">SELAMAT DATANG</span><h2>Masuk ke sistem</h2><p>Gunakan akun yang telah diberikan oleh administrator.</p></div><form id="login-form"><label class="login-label">Username</label><div class="login-field">◉<input id="login-username" autocomplete="username" placeholder="Masukkan username" required></div><label class="login-label">Password</label><div class="login-field">◆<input id="login-password" type="password" autocomplete="current-password" placeholder="Masukkan password" required><button id="toggle-login-password" type="button">◉</button></div><div id="login-error" class="login-error"></div><button id="login-submit" class="login-submit" type="submit"><span>Masuk ke Dashboard</span><b>→</b></button></form><div class="login-note">● Akun dikelola oleh administrator sistem.</div></div></div></section>
+<section id="app-page" class="app hidden">
+  <aside class="sidebar">
+    <div class="side-brand"><img class="mini-logo" src="assets/pegadaian.png" alt="Logo Pegadaian Area Senen"><div class="side-brand-copy"><b>MONITORING GADAI</b><small>AREA SENEN</small></div><button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Buka/tutup sidebar">‹</button></div>
+    <nav>
+      <div class="nav-group">
+        <button class="nav-group-toggle active" data-group="import" type="button">▤ <span>Import &amp; Cek Data</span><i class="chevron">⌄</i></button>
+        <div class="nav-submenu open" data-submenu="import">
+          <button class="nav-item active" data-page="import" data-section="import-check">▣ <span>Import &amp; Cek Data</span></button>
+          <button class="nav-item nav-subitem" data-page="import" data-section="import-preview">▤ <span>Preview Data</span></button>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-toggle" data-group="input" type="button">✎ <span>Input &amp; Update Kontrak</span><i class="chevron">⌄</i></button>
+        <div class="nav-submenu" data-submenu="input">
+          <button class="nav-item" data-page="input" data-section="input-search"><span>Cari &amp; Tambahkan Kontrak</span></button>
+          <button class="nav-item nav-subitem" data-page="input" data-section="input-items">◈ <span>Input Barang &amp; Taksir Ulang</span></button>
+          <button class="nav-item nav-subitem" data-page="input" data-section="input-obligation">▣ <span>Minimal Kewajiban Pembeli Lelang</span></button>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-toggle" data-group="contracts" data-page="contracts" type="button">▤ <span>Data Kontrak</span></button>
+        <div class="nav-submenu" data-submenu="contracts"></div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-toggle" data-group="monitoring" type="button">◉ <span>Monitoring</span><i class="chevron">⌄</i></button>
+        <div class="nav-submenu" data-submenu="monitoring">
+          <button class="nav-item" data-page="monitoring" data-section="monitor-branch">▥ <span>Total Kewajiban per Cabang</span></button>
+          <button class="nav-item nav-subitem" data-page="monitoring" data-section="monitor-outlet">▦ <span>Ranking Outlet</span></button>
+          <button class="nav-item nav-subitem" data-page="monitoring" data-section="monitor-bjdpl">◫ <span>Rincian BJDPL Outlet</span></button>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-toggle" data-group="dashboard" data-page="dashboard" type="button">◈ <span>Dashboard KPI</span></button>
+        <div class="nav-submenu" data-submenu="dashboard"></div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-toggle" data-group="export" data-page="export" type="button">⇩ <span>Ekspor Data</span></button>
+        <div class="nav-submenu" data-submenu="export"></div>
+      </div>
+    </nav>
+    <div class="side-footer"><div class="side-user-card"><div class="side-user-main"><div id="side-user-avatar" class="side-user-avatar">PG</div><div class="side-user-copy"><b id="side-user-name">User</b><small id="side-user-role">USER • Area Senen</small></div><span class="side-online"></span></div><button id="logout-btn" class="logout-btn"><span>↪</span><b>Keluar dari Sistem</b></button></div></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><div class="page-kicker">Sistem Informasi</div><h2 id="page-title">Import & Cek Data</h2></div>
+      <div class="user-pill"><span id="top-user-name">User</span></div>
+    </header>
+
+    <div class="page active" id="page-import"><div id="import-check" class="page-section active"><div class="hero-card">
+        <div><span class="eyebrow">DATA PROCESSING</span><h1>Import & Cek Data</h1><p>Upload Excel monitoring gadai. Data diproses langsung di browser.</p></div>
+        <div class="upload-zone admin-only" id="admin-import-controls">
+  <input id="excel-file" type="file" accept=".xlsx,.xls,.csv">
+  <label for="excel-file" class="btn btn-primary">Import Data</label>
+  <button id="clear-import-data" type="button" class="btn btn-danger">Hapus Data Import</button>
+  <span id="file-name">Belum ada file</span>
+</div>
+        <div class="import-batches-panel" id="import-batches-panel">
+          <div class="import-batches-head"><div><b>Daftar File Import</b><span>Setiap Excel yang diimport menjadi satu file. Semua datanya otomatis tergabung.</span></div></div>
+          <div class="import-batches-table-wrap">
+            <table class="import-batches-table"><thead><tr><th>Nama File</th><th>Jumlah Baris</th><th>Waktu Import</th><th>Aksi</th></tr></thead><tbody id="import-batches-list"></tbody></table>
+          </div>
+        </div>
+      </div>
+      <div class="panel import-scope-panel">
+        <div class="panel-head"><div><h3>Filter Data</h3></div></div>
+        <div class="form-grid three import-filter-form">
+          <div><label for="import-filter-branch">Cabang</label><select id="import-filter-branch" aria-label="Filter Cabang"></select></div>
+          <div><label for="import-filter-outlet">Outlet</label><select id="import-filter-outlet" aria-label="Filter Outlet"></select></div>
+          <div class="filter-action"><label>&nbsp;</label><button id="reset-import-filters" type="button" class="btn btn-secondary">Reset Filter</button></div>
+        </div>
+      </div>
+      <div class="grid-4 compact-kpis"><div class="kpi-card"><span>Baris Data</span><strong id="import-row-count">0</strong></div><div class="kpi-card"><span>Jumlah Kontrak</span><strong id="import-contract-count">0</strong></div><div class="kpi-card"><span>Kontrak Lengkap</span><strong id="import-complete-contract-count">0</strong></div><div class="kpi-card"><span>Kontrak Tidak Lengkap</span><strong id="import-incomplete-contract-count">0</strong></div></div>
+      <div class="panel"><div class="panel-head"><div><h3>Pemeriksaan Data</h3><p>Baris <b>merah</b> berarti ada field penting yang kosong. Baris <b>hijau</b> berarti lengkap.</p></div></div><div id="missing-summary" class="missing-summary"></div></div>
+      </div><div id="import-preview" class="page-section"><div class="panel">
+        <div class="panel-head preview-head"><div><h3>Preview Data Import</h3></div></div>
+        <div id="preview-searchbar" class="form-grid four preview-filter-form">
+          <div><label for="preview-filter-contract">Search</label><input id="preview-filter-contract" data-preview-filter="No_Kontrak" class="table-search" placeholder="Cari no kontrak..."></div>
+          <div><label for="preview-filter-customer">Customer</label><input id="preview-filter-customer" data-preview-filter="Customer_NM" class="table-search" placeholder="Cari customer..."></div>
+          <div><label for="preview-filter-branch">Cabang</label><select id="preview-filter-branch" data-preview-filter="Cabang" aria-label="Filter Cabang"></select></div>
+          <div><label for="preview-filter-outlet">Outlet</label><select id="preview-filter-outlet" data-preview-filter="Outlet" aria-label="Filter Outlet"></select></div>
+        </div>
+        <div class="table-wrap"><table id="preview-table"></table></div>
+      </div>
+    </div></div>
+
+</div><div class="page" id="page-input">
+
+      <div id="input-search" class="page-section input-top-section">
+          <div class="panel input-search-panel">
+            <div class="panel-head"><div><h3>Cari &amp; Tambahkan Kontrak</h3><p>Ketik nomor kontrak lalu pilih hasilnya. Cabang dan outlet akan otomatis terisi.</p></div></div>
+            <div class="search-contract-row"><input id="contract-search" list="contract-suggestions" placeholder="Ketik nomor kontrak..." autocomplete="off"><datalist id="contract-suggestions"></datalist><button id="find-contract" class="btn btn-info">Cari</button><button id="add-contract" class="btn btn-primary">+ Tambah</button></div>
+            <div id="contract-search-result" class="search-result"></div>
+          </div>
+          <div class="panel accent-yellow hdle-global-panel">
+            <div class="panel-head"><div><h3>HDLE Global</h3><p>Nilai aktif untuk perhitungan sesi ini.</p></div></div>
+            <div class="form-grid three">
+              <div><label>HDLE Per Tanggal</label><input id="hdle-date" type="date"></div>
+              <div><label>HDLE Global (Rp)</label><input id="hdle-global" type="number" min="0" step="1000"></div>
+              <div class="value-display"><span>HDLE Aktif</span><strong id="hdle-display">Rp 0</strong></div>
+            </div>
+          </div>
+      </div>
+
+      <div id="input-contract-info" class="page-section">
+        <div class="panel">
+          <div class="panel-head"><h3>Informasi Kontrak</h3></div>
+          <div class="form-grid three">
+            <div><label>No Kontrak</label><input id="contract-no" placeholder="Nomor kontrak"></div>
+            <div><label>Area</label><input id="contract-area" value="Area Senen" disabled></div>
+            <div><label>Cabang</label><select id="contract-branch"></select></div>
+            <div><label>Outlet</label><select id="contract-outlet"></select></div>
+            <div><label>Nama Customer</label><input id="contract-customer"></div>
+            <div><label>Product</label><input id="contract-product"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="input-credit-obligation" class="page-section">
+        <div class="panel">
+          <div class="panel-head"><h3>Kredit &amp; Kewajiban</h3></div>
+          <div class="credit-obligation-row credit-obligation-top">
+            <div><label>Tgl Kredit</label><input id="tgl-kredit" type="date"></div>
+            <div><label>Tgl Cut Off</label><input id="tgl-cutoff" type="date"></div>
+            <div class="value-display"><span>BJDPL Hari</span><strong id="bjdpl-display">0 Hari</strong></div>
+            <div><label>Rubrik</label><select id="rubrik"><option>KT</option></select></div>
+          </div>
+          <div class="credit-obligation-row credit-obligation-bottom">
+            <div><label>UP (Rp)</label><input id="input-up" class="currency-input" inputmode="numeric" placeholder="0"></div>
+            <div><label>Sewa Modal (Rp)</label><input id="input-sm" class="currency-input" inputmode="numeric" placeholder="0"></div>
+            <div><label>Denda Sewa Modal (KCA Fleksi)</label><input id="input-denda-sm" class="currency-input" inputmode="numeric" value="0"></div>
+            <div><label>Denda Keterlambatan</label><input id="input-denda-keterlambatan" class="currency-input" inputmode="numeric" value="0"></div>
+          </div>
+          <div class="credit-obligation-info">
+            <div class="value-display"><span>Informasi Kewajiban</span><strong id="kewajiban-display">Rp 0</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="input-items" class="page-section">
+        <div class="input-context"><div><span>No Kontrak</span><strong id="ctx-items-contract">-</strong></div><div><span>Nama Customer</span><strong id="ctx-items-customer">-</strong></div><div><span>Outlet</span><strong id="ctx-items-outlet">-</strong></div><div><span>Cabang</span><strong id="ctx-items-branch">-</strong></div><div class="input-context-hdle"><span>HDLE</span><strong id="ctx-items-hdle">Rp 0</strong></div></div>
+        <div class="panel"><div class="panel-head"><div><h3>Input Barang &amp; Detail</h3><p>Jumlah barang dapat ditambah. Nama barang, karatase, BK, dan BB dapat diisi.</p></div></div>
+        <div class="item-count-row"><label>Jumlah Barang</label><input id="item-count" type="number" min="1" max="30" value="1"><button id="apply-item-count" class="btn btn-light">Terapkan</button></div>
+        <div id="item-forms"></div>
+        <div class="grid-2 totals-row item-summary-grid item-only-summary">
+          <div class="summary-box"><span>Total BK</span><strong id="total-bk">0,00</strong></div>
+          <div class="summary-box"><span>Total BB</span><strong id="total-bb">0,00</strong></div>
+        </div>
+      </div>
+
+      <div class="panel accent-yellow">
+        <div class="panel-head"><div><h3>Taksir Ulang</h3><p>Karatase, BB, dan nilai berlian dapat disesuaikan untuk taksir ulang. NPBL dihitung otomatis dari nilai taksir ulang.</p></div></div>
+        <div id="taksir-forms"></div>
+        <div class="grid-4 totals-row taksir-summary-grid">
+          <div class="summary-box"><span>Total NPBL</span><strong id="total-est">Rp 0</strong></div>
+          <div class="summary-box"><span>Total Nilai Berlian</span><strong id="total-diamond">Rp 0</strong></div>
+          <div class="summary-box"><span>Selisih NPBL vs UP</span><strong id="selisih-up">Rp 0</strong></div>
+          <div class="summary-box"><span>Status NPBL vs UP</span><strong id="est-status">Sama dengan UP</strong></div>
+        </div>
+        <div class="calc-note" id="hdle-calc-note"></div>
+      </div>
+
+      <div class="save-row"><button id="save-contract" class="btn btn-primary btn-lg">💾 Simpan / Update Kontrak</button></div>
+      </div><div id="input-obligation" class="page-section">
+        <div class="input-context"><div><span>No Kontrak</span><strong id="ctx-obligation-contract">-</strong></div><div><span>Nama Customer</span><strong id="ctx-obligation-customer">-</strong></div><div><span>Outlet</span><strong id="ctx-obligation-outlet">-</strong></div><div><span>Cabang</span><strong id="ctx-obligation-branch">-</strong></div><div class="input-context-hdle"><span>HDLE</span><strong id="ctx-obligation-hdle">Rp 0</strong></div></div>
+        <div class="panel"><div class="panel-head"><div><h3>Perhitungan Minimal Kewajiban Pembeli Lelang</h3><p>Seluruh nilai dihitung otomatis dari detail barang, taksir ulang, UP, sewa modal, denda, dan HDLE.</p></div></div>
+        <div class="auction-visual">
+          <div class="calc-stage obligation-stage">
+            <div class="stage-label">01 · KEWAJIBAN</div>
+            <div class="calc-lines">
+              <div><span>UP</span><strong id="flow-up">Rp 0</strong></div>
+              <div><span>Sewa Modal</span><strong id="flow-sm">Rp 0</strong></div>
+              <div><span>Denda Sewa Modal</span><strong id="flow-dsm">Rp 0</strong></div>
+              <div><span>Denda Keterlambatan</span><strong id="flow-dt">Rp 0</strong></div>
+            </div>
+            <div class="calc-total"><span>Total Kewajiban</span><strong id="flow-kewajiban">Rp 0</strong></div>
+          </div>
+          <div class="calc-connector"><span>× 101/99</span><b>→</b></div>
+          <div class="calc-stage hml-stage">
+            <div class="stage-label">02 · HARGA MINIMAL LELANG</div>
+            <div class="calc-lines hml-mini-lines">
+              <div><span>Total Kewajiban</span><strong id="hml-base">Rp 0</strong></div>
+              <div><span>Faktor Pengali</span><strong>101 / 99</strong></div>
+            </div>
+            <div class="hml-value-block">
+              <div class="big-value" id="hml-total">Rp 0</div>
+              <div class="formula-caption">Total Kewajiban × 101/99</div>
+            </div>
+          </div>
+          <div class="calc-compare">
+            <div class="stage-label">03 · HARGA LIMIT</div>
+            <div class="compare-values">
+              <div><small>HML</small><strong id="compare-hml">Rp 0</strong></div>
+              <span>VS</span>
+              <div><small>NPBL</small><strong id="compare-npbl">Rp 0</strong></div>
+            </div>
+            <div class="limit-winner"><span>Nilai tertinggi → Harga Limit Lelang</span><strong id="limit-total">Rp 0</strong><small id="limit-basis">-</small></div>
+            <div class="sub-result emphasized-result"><span>Minimal Penjualan Lelang</span><strong id="minimal-penjualan">Rp 0</strong></div>
+          </div>
+          <div class="calc-stage hmls-stage">
+            <div class="stage-label">04 · HMLS</div>
+            <div class="calc-lines">
+              <div><span>UP + SM + Denda SM</span><strong id="hmls-base">Rp 0</strong></div>
+              <div><span>Bea Lelang Pembeli</span><strong id="bea-pembeli">Rp 0</strong></div>
+              <div><span>Bea Lelang Penjual</span><strong id="bea-penjual">Rp 0</strong></div>
+            </div>
+            <div class="calc-total"><span>HMLS</span><strong id="hmls-total">Rp 0</strong></div>
+          </div>
+          <div class="calc-discount">
+            <div class="stage-label">05 · DISKON LELANG</div>
+            <div class="discount-formula"><strong id="hmls-minus-npbl">Rp 0 − Rp 0</strong><span>=</span><b id="diskon-rp">Rp 0</b></div>
+            <div class="discount-state"><span>Status</span><strong id="diskon-status">TIDAK DISKON</strong><small>0 = tidak diskon · &gt; 0 = diskon</small></div>
+            <div class="discount-percent"><span>Diskon Lelang (%)</span><strong id="diskon-pct">0,00%</strong></div>
+          </div>
+          <div class="final-result">
+            <div class="stage-label">06 · HASIL AKHIR</div>
+            <span>Minimal Kewajiban Pembeli Lelang</span>
+            <strong id="minimal-kewajiban-pembeli">Rp 0</strong>
+            <small id="minimal-kewajiban-rule">Hasil akhir sesuai status diskon</small>
+          </div>
+        </div>
+        <div id="auction-detail"></div>
+      </div>
+
+
+    </div>
+
+    </div><div class="page" id="page-contracts">
+      <div class="panel"><div class="form-grid three"><div><label>Search</label><input id="contracts-search" class="table-search" placeholder="Cari no kontrak/customer/outlet..."></div><div><label>Cabang</label><select id="contracts-branch"></select></div><div><label>Outlet</label><select id="contracts-outlet"></select></div></div></div>
+      <div class="panel"><div class="table-wrap"><table id="contracts-table"></table></div></div>
+    </div>
+
+    <div class="page" id="page-monitoring">
+      
+      <div id="monitor-branch" class="monitor-pane active">
+        <div class="grid-4"><div class="summary-box"><span>Total Kewajiban</span><strong id="mon-branch-total">Rp 0</strong></div><div class="summary-box"><span>Total Kontrak</span><strong id="mon-branch-contracts">0</strong></div><div class="summary-box"><span>Total Cabang</span><strong id="mon-branch-count">0</strong></div><div class="summary-box"><span>HDLE</span><strong id="mon-branch-hdle">Rp 0</strong></div></div>
+        <div class="panel"><div class="panel-head"><h3>Ranking Cabang berdasarkan Total Kewajiban</h3><input id="branch-ranking-search" class="table-search monitoring-search" placeholder="Cari cabang..."></div><div class="table-wrap"><table id="branch-ranking-table"></table></div></div>
+        
+      </div>
+      <div id="monitor-outlet" class="monitor-pane">
+        <div class="panel"><div class="panel-head"><h3>Ranking Outlet berdasarkan Total Kewajiban</h3><div class="monitoring-filter-row"><select id="outlet-ranking-branch" class="monitoring-branch-filter"></select><input id="outlet-ranking-search" class="table-search monitoring-search" placeholder="Cari kode outlet, outlet, atau cabang..."></div></div><div class="table-wrap"><table id="outlet-ranking-table"></table></div></div></div><div id="monitor-bjdpl" class="monitor-pane"><div class="panel"><div class="panel-head"><h3>Rincian BJDPL Outlet</h3><div class="monitoring-filter-row"><select id="bjdpl-branch" class="monitoring-branch-filter"></select><input id="bjdpl-search" class="table-search monitoring-search" placeholder="Cari kode outlet, outlet, atau cabang..."></div></div><div class="table-wrap"><table id="bjdpl-table"></table></div></div>
+      </div>
+    </div>
+
+    <div class="page" id="page-dashboard">
+      <div class="dashboard-layout dashboard-layout-clean">
+        <section class="dashboard-left">
+          <div class="panel dashboard-filter"><div class="form-grid one"><div><label>Filter Cabang</label><select id="dashboard-branch"></select></div></div></div>
+          <div class="dashboard-summary-grid dashboard-summary-grid-seven">
+            <div class="summary-box"><span>Total Kewajiban</span><strong id="dash-kewajiban">Rp 0</strong></div>
+            <div class="summary-box"><span>Total Kontrak</span><strong id="dash-kontrak">0</strong></div>
+            <div class="summary-box"><span>Total Nasabah</span><strong id="dash-nasabah">0</strong></div>
+            <div class="summary-box"><span>Total Outlet</span><strong id="dash-outlet">0</strong></div>
+            <div class="summary-box"><span>Estimasi Total Diskon Lelang</span><strong id="dash-diskon-total">Rp 0</strong></div>
+            <div class="summary-box"><span>Rata-rata BJDPL</span><strong id="dash-bjdpl-avg">0 Hari</strong></div>
+            <div class="summary-box"><span>Kontrak &gt; 90 Hari</span><strong id="dash-bjdpl-risk">0</strong></div>
+          </div>
+          <div class="grid-2 dashboard-charts dashboard-core-charts">
+            <div class="panel chart-panel"><div class="panel-head"><h3 id="dashboard-obligation-title">Total Kewajiban per Cabang</h3></div><div id="dashboard-obligation-chart" class="chart"></div></div>
+            <div class="panel chart-panel"><div class="panel-head"><h3>Distribusi BJDPL</h3></div><div id="dashboard-bjdpl-chart" class="chart"></div></div>
+            <div class="panel chart-panel"><div class="panel-head"><h3>Komposisi Kewajiban</h3></div><div id="dashboard-composition-chart" class="chart"></div></div>
+            <div class="panel chart-panel"><div class="panel-head"><h3>Top 5 Outlet berdasarkan Kewajiban</h3></div><div id="dashboard-top10-chart" class="chart"></div></div>
+            <div class="panel chart-panel"><div class="panel-head"><h3>Status Diskon Lelang</h3></div><div id="dashboard-diskon-status-chart" class="chart"></div></div>
+            <div class="panel chart-panel"><div class="panel-head"><h3>Top 5 Nasabah berdasarkan Kewajiban</h3></div><div id="dashboard-top10-nasabah-chart" class="chart"></div></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="page" id="page-export">
+      <div class="panel"><div class="form-grid three"><div><label>Filter Cabang</label><select id="export-branch"></select></div><div><label>Filter Outlet</label><select id="export-outlet"></select></div><div class="value-display"><span>HDLE aktif</span><strong id="export-hdle">Rp 0</strong></div></div><div class="export-actions"><button id="export-excel" class="btn btn-primary btn-lg">⇩ Export Excel</button></div></div>
+      <div class="panel"><div class="panel-head"><h3>Preview Output</h3><input id="export-search" class="table-search" placeholder="🔎 Search output..."></div><div class="table-wrap"><table id="export-table"></table></div></div>
+      <div class="panel"><div class="calc-note"><b>Informasi Perhitungan berdasarkan HDLE</b><br>HDLE per tanggal <span id="export-hdle-date">-</span><br>Nilai HDLE: <b id="export-hdle-value">Rp 0</b><br>Estimasi harga jual = (Karatase ÷ 24) × BB × HDLE + Nilai Berlian.</div></div>
+    </div>
+  </main>
+</section>
+
+<script src="js/app.js?v=14.0"></script>
+</body>
+</html></div>
